@@ -20,16 +20,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
 import android.view.Menu;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
+
+    private TextView mText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new AsyncTask<Void, Void, Void>() {
+        mText = (TextView) findViewById(R.id.text);
+
+        new AsyncTask<Void, String, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
                 Log.i(TAG, "doInBackground()");
@@ -39,29 +44,29 @@ public class MainActivity extends Activity {
                     connection.setRequestMethod("GET");
                     connection.setInstanceFollowRedirects(false);
 
-                    Log.i(TAG, "connecting to url=" + url);
+                    logBackgroundWork("connecting to url=" + url);
                     connection.connect();
 
                     final Map<String, List<String>> headers = connection.getHeaderFields();
-                    Log.i(TAG, "  headers=" + headers);
+                    logBackgroundWork("  headers=" + headers);
 
                     final String contentType = connection.getContentType();
-                    Log.i(TAG, "  contentType=" + contentType);
+                    logBackgroundWork("  contentType=" + contentType);
 
                     final long date = connection.getDate();
-                    Log.i(TAG, "  date=" + date);
+                    logBackgroundWork("  date=" + date);
 
                     final String contentEncoding = connection.getContentEncoding();
-                    Log.i(TAG, "  contentEncoding=" + contentEncoding);
+                    logBackgroundWork("  contentEncoding=" + contentEncoding);
 
                     final String responseMessage = connection.getResponseMessage();
-                    Log.i(TAG, "  responseMessage=" + responseMessage);
+                    logBackgroundWork("  responseMessage=" + responseMessage);
 
                     final int responseCode = connection.getResponseCode();
-                    Log.i(TAG, "  responseCode=" + responseCode);
+                    logBackgroundWork("  responseCode=" + responseCode);
 
                     final InputStream content = (InputStream)connection.getContent();
-                    Log.i(TAG, "  content=" + content);
+                    logBackgroundWork("  content=" + content);
 
                     final BufferedReader reader = new BufferedReader(new InputStreamReader(content));
 //                    while (true) {
@@ -73,24 +78,24 @@ public class MainActivity extends Activity {
 //                    }
                     final XmlPullParser xmlPullParser = Xml.newPullParser();
                     xmlPullParser.setInput(reader);
-                    Log.i(TAG, "parsing xml with pull parser...");
+                    logBackgroundWork("parsing xml with pull parser...");
                     for (int eventType = xmlPullParser.getEventType(); eventType != XmlPullParser.END_DOCUMENT; eventType = xmlPullParser.next()) {
                         switch (eventType) {
                         case XmlPullParser.START_DOCUMENT:
-                            Log.i(TAG, "  xml:start document");
+                            logBackgroundWork("  xml:start document");
                             break;
                         case XmlPullParser.START_TAG:
-                            Log.i(TAG, "  xml:start tag=" + xmlPullParser.getName());
+                            logBackgroundWork("  xml:start tag=" + xmlPullParser.getName());
                             break;
                         case XmlPullParser.END_TAG:
-                            Log.i(TAG, "  xml:end tag=" + xmlPullParser.getName());
+                            logBackgroundWork("  xml:end tag=" + xmlPullParser.getName());
                             break;
                         case XmlPullParser.TEXT:
-                            Log.i(TAG, "  xml:text=" + xmlPullParser.getText());
+                            logBackgroundWork("  xml:text=" + xmlPullParser.getText());
                             break;
                         }
                     }
-                    Log.i(TAG, "  xml:end document");
+                    logBackgroundWork("  xml:end document");
 
                     reader.close();
                     connection.disconnect();
@@ -107,6 +112,17 @@ public class MainActivity extends Activity {
                     // Do finally thing.
                 }
                 return null;
+            }
+            @Override
+            protected void onProgressUpdate(String... progresses) {
+                Log.i(TAG, "onProgressUpdate()");
+                for (String progress : progresses) {
+                    mText.append(progress + "\n");
+                }
+            }
+            private void logBackgroundWork(String message) {
+                Log.i(TAG, message);
+                publishProgress(message);
             }
         }.execute();
     }
