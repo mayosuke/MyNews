@@ -43,6 +43,18 @@ public class MainActivity extends Activity {
 
                     final long date = connection.getDate();
                     Log.i(TAG, "  date=" + date);
+
+                    final String contentEncoding = connection.getContentEncoding();
+                    Log.i(TAG, "  contentEncoding=" + contentEncoding);
+
+                    final String responseMessage = connection.getResponseMessage();
+                    Log.i(TAG, "  responseMessage=" + responseMessage);
+
+                    final int responseCode = connection.getResponseCode();
+                    Log.i(TAG, "  responseCode=" + responseCode);
+
+                    final Object content = connection.getContent();
+                    Log.i(TAG, "  content=" + content);
                 } catch (MalformedURLException e) {
                     Log.e(TAG, "MalformedURLException=" + e);
                     e.printStackTrace();
