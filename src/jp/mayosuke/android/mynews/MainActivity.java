@@ -16,12 +16,16 @@ import org.xmlpull.v1.XmlPullParserException;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
@@ -181,6 +185,14 @@ public class MainActivity extends Activity {
             final ListAdapter adapter = new ArrayAdapter<Uri>(getActivity(), android.R.layout.simple_list_item_1, URIS);
             setListAdapter(adapter);
         }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            final View view = super.onCreateView(inflater, container, savedInstanceState);
+            view.setBackgroundColor(Color.WHITE);
+            return view;
+        }
+
     }
 
     public static class NewsListFragment extends ListFragment {
