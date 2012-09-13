@@ -10,11 +10,15 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Xml;
 import android.view.Menu;
 
 public class MainActivity extends Activity {
@@ -60,13 +64,34 @@ public class MainActivity extends Activity {
                     Log.i(TAG, "  content=" + content);
 
                     final BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-                    while (true) {
-                        final String line = reader.readLine();
-                        if (line == null) {
+//                    while (true) {
+//                        final String line = reader.readLine();
+//                        if (line == null) {
+//                            break;
+//                        }
+//                        Log.i(TAG, line);
+//                    }
+                    final XmlPullParser xmlPullParser = Xml.newPullParser();
+                    xmlPullParser.setInput(reader);
+                    Log.i(TAG, "parsing xml with pull parser...");
+                    for (int eventType = xmlPullParser.getEventType(); eventType != XmlPullParser.END_DOCUMENT; eventType = xmlPullParser.next()) {
+                        switch (eventType) {
+                        case XmlPullParser.START_DOCUMENT:
+                            Log.i(TAG, "  xml:start document");
+                            break;
+                        case XmlPullParser.START_TAG:
+                            Log.i(TAG, "  xml:start tag=" + xmlPullParser.getName());
+                            break;
+                        case XmlPullParser.END_TAG:
+                            Log.i(TAG, "  xml:end tag=" + xmlPullParser.getName());
+                            break;
+                        case XmlPullParser.TEXT:
+                            Log.i(TAG, "  xml:text=" + xmlPullParser.getText());
                             break;
                         }
-                        Log.i(TAG, line);
                     }
+                    Log.i(TAG, "  xml:end document");
+
                     reader.close();
                     connection.disconnect();
                 } catch (MalformedURLException e) {
@@ -74,6 +99,9 @@ public class MainActivity extends Activity {
                     e.printStackTrace();
                 } catch (IOException e) {
                     Log.e(TAG, "IOException=" + e);
+                    e.printStackTrace();
+                } catch (XmlPullParserException e) {
+                    Log.e(TAG, "XmlPullParserException=" + e);
                     e.printStackTrace();
                 } finally {
                     // Do finally thing.
