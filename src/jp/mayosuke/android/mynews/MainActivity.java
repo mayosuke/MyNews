@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -20,32 +21,39 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try {
-            final URL url = new URL("http://www.google.com/");
-            final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setInstanceFollowRedirects(false);
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                Log.i(TAG, "doInBackground()");
+                try {
+                    final URL url = new URL("http://www.google.com/");
+                    final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
+                    connection.setInstanceFollowRedirects(false);
 
-            Log.i(TAG, "cnnecting to url=" + url);
-            connection.connect();
+                    Log.i(TAG, "connecting to url=" + url);
+                    connection.connect();
 
-            final Map<String, List<String>> headers = connection.getHeaderFields();
-            Log.i(TAG, "  headers=" + headers);
+                    final Map<String, List<String>> headers = connection.getHeaderFields();
+                    Log.i(TAG, "  headers=" + headers);
 
-            final String contentType = connection.getContentType();
-            Log.i(TAG, "  contentType=" + contentType);
+                    final String contentType = connection.getContentType();
+                    Log.i(TAG, "  contentType=" + contentType);
 
-            final long date = connection.getDate();
-            Log.i(TAG, "  date=" + date);
-        } catch (MalformedURLException e) {
-            Log.e(TAG, "MalformedURLException=" + e);
-            e.printStackTrace();
-        } catch (IOException e) {
-            Log.e(TAG, "IOException=" + e);
-            e.printStackTrace();
-        } finally {
-            // Do finally thing.
-        }
+                    final long date = connection.getDate();
+                    Log.i(TAG, "  date=" + date);
+                } catch (MalformedURLException e) {
+                    Log.e(TAG, "MalformedURLException=" + e);
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    Log.e(TAG, "IOException=" + e);
+                    e.printStackTrace();
+                } finally {
+                    // Do finally thing.
+                }
+                return null;
+            }
+        }.execute();
     }
 
     @Override
