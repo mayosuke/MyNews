@@ -1,6 +1,9 @@
 package jp.mayosuke.android.mynews;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -53,8 +56,19 @@ public class MainActivity extends Activity {
                     final int responseCode = connection.getResponseCode();
                     Log.i(TAG, "  responseCode=" + responseCode);
 
-                    final Object content = connection.getContent();
+                    final InputStream content = (InputStream)connection.getContent();
                     Log.i(TAG, "  content=" + content);
+
+                    final BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+                    while (true) {
+                        final String line = reader.readLine();
+                        if (line == null) {
+                            break;
+                        }
+                        Log.i(TAG, line);
+                    }
+                    reader.close();
+                    connection.disconnect();
                 } catch (MalformedURLException e) {
                     Log.e(TAG, "MalformedURLException=" + e);
                     e.printStackTrace();
