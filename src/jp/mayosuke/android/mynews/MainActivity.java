@@ -14,6 +14,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.ListFragment;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -21,6 +22,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -151,6 +154,12 @@ public class MainActivity extends Activity {
                 publishProgress(message);
             }
         }.execute();
+
+        final String tag = "categoryList";
+        if (getFragmentManager().findFragmentByTag(tag) == null) {
+            final Fragment categoryList = new CategoryListFragment();
+            getFragmentManager().beginTransaction().add(android.R.id.content, categoryList, tag).addToBackStack(tag).commit();
+        }
     }
 
     @Override
@@ -160,14 +169,27 @@ public class MainActivity extends Activity {
     }
 
     public static class CategoryListFragment extends ListFragment {
+        private static final String TAG = CategoryListFragment.class.getSimpleName();
+
         public CategoryListFragment() {}
+
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            Log.i(TAG, "onActivityCreated(savedInstanceState=" + savedInstanceState + ")");
+            super.onActivityCreated(savedInstanceState);
+
+            final ListAdapter adapter = new ArrayAdapter<Uri>(getActivity(), android.R.layout.simple_list_item_1, URIS);
+            setListAdapter(adapter);
+        }
     }
 
     public static class NewsListFragment extends ListFragment {
+        private static final String TAG = NewsListFragment.class.getSimpleName();
         public NewsListFragment() {}
     }
 
     public static class NewsDetailFragment extends ListFragment {
+        private static final String TAG = NewsDetailFragment.class.getSimpleName();
         public NewsDetailFragment() {}
     }
 }
