@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +27,7 @@ public class MainActivity extends Activity {
             protected Void doInBackground(Void... params) {
                 Log.i(TAG, "doInBackground()");
                 try {
-                    final URL url = new URL("http://www.google.com/");
+                    final URL url = new URL("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=" + Uri.encode("阪神"));
                     final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("GET");
                     connection.setInstanceFollowRedirects(false);
