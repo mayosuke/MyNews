@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -58,21 +59,20 @@ public class MainActivity extends Activity {
         Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=" + Uri.encode("阪神")),
     };
 
-    private TextView mText;
+    private static final String TAG_NEWS_CATEGORY_LIST = "categoryList";
+
+//    private TextView mText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        mText = (TextView) findViewById(R.id.text);
-
-        loadXmlInBackground();
-
-        final String tag = "categoryList";
-        if (getFragmentManager().findFragmentByTag(tag) == null) {
+        if (getFragmentManager().findFragmentByTag(TAG_NEWS_CATEGORY_LIST) == null) {
             final Fragment categoryList = new CategoryListFragment();
-            getFragmentManager().beginTransaction().add(android.R.id.content, categoryList, tag).addToBackStack(tag).commit();
+            getFragmentManager().beginTransaction().
+                    add(android.R.id.content, categoryList, TAG_NEWS_CATEGORY_LIST).
+                    addToBackStack(TAG_NEWS_CATEGORY_LIST).
+                    commit();
         }
     }
 
@@ -98,114 +98,142 @@ public class MainActivity extends Activity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            Log.i(TAG, "onCreateView(savedInstanceState=" + savedInstanceState + ")");
             final View view = super.onCreateView(inflater, container, savedInstanceState);
             view.setBackgroundColor(Color.WHITE);
             return view;
         }
 
+        @Override
+        public void onListItemClick(ListView l, View v, int position, long id) {
+            Log.i(TAG, "onListItemClick(position=" + position + ",id=" + id + ")");
+        }
     }
 
     public static class NewsListFragment extends ListFragment {
         private static final String TAG = NewsListFragment.class.getSimpleName();
+
+        private TextView mText;
+
         public NewsListFragment() {}
+
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            Log.i(TAG, "onActivityCreated(savedInstanceState=" + savedInstanceState + ")");
+            super.onActivityCreated(savedInstanceState);
+
+            mText = (TextView) getActivity().findViewById(R.id.text);
+            loadXmlInBackground();
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            Log.i(TAG, "onCreateView(savedInstanceState=" + savedInstanceState + ")");
+
+            // FIXME: ニュースカテゴリの内容をTextViewで表示するために、super.onCreateView()の呼び出しを一時的に抑止する。
+//          final View view = super.onCreateView(inflater, container, savedInstanceState);
+            final View view = inflater.inflate(R.layout.activity_main, container);
+            view.setBackgroundColor(Color.WHITE);
+            return view;
+        }
+
+        private void loadXmlInBackground() {
+            new AsyncTask<Void, String, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+                    Log.i(TAG, "doInBackground()");
+                    try {
+                        final URL url = new URL("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=" + Uri.encode("阪神"));
+                        final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                        connection.setRequestMethod("GET");
+                        connection.setInstanceFollowRedirects(false);
+
+                        logBackgroundWork("connecting to url=" + url);
+                        connection.connect();
+
+                        final Map<String, List<String>> headers = connection.getHeaderFields();
+                        logBackgroundWork("  headers=" + headers);
+
+                        final String contentType = connection.getContentType();
+                        logBackgroundWork("  contentType=" + contentType);
+
+                        final long date = connection.getDate();
+                        logBackgroundWork("  date=" + date);
+
+                        final String contentEncoding = connection.getContentEncoding();
+                        logBackgroundWork("  contentEncoding=" + contentEncoding);
+
+                        final String responseMessage = connection.getResponseMessage();
+                        logBackgroundWork("  responseMessage=" + responseMessage);
+
+                        final int responseCode = connection.getResponseCode();
+                        logBackgroundWork("  responseCode=" + responseCode);
+
+                        final InputStream content = (InputStream)connection.getContent();
+                        logBackgroundWork("  content=" + content);
+
+                        final BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+//                        while (true) {
+//                            final String line = reader.readLine();
+//                            if (line == null) {
+//                                break;
+//                            }
+//                            Log.i(TAG, line);
+//                        }
+                        final XmlPullParser xmlPullParser = Xml.newPullParser();
+                        xmlPullParser.setInput(reader);
+                        logBackgroundWork("parsing xml with pull parser...");
+                        for (int eventType = xmlPullParser.getEventType(); eventType != XmlPullParser.END_DOCUMENT; eventType = xmlPullParser.next()) {
+                            switch (eventType) {
+                            case XmlPullParser.START_DOCUMENT:
+                                logBackgroundWork("  xml:start document");
+                                break;
+                            case XmlPullParser.START_TAG:
+                                logBackgroundWork("  xml:start tag=" + xmlPullParser.getName());
+                                break;
+                            case XmlPullParser.END_TAG:
+                                logBackgroundWork("  xml:end tag=" + xmlPullParser.getName());
+                                break;
+                            case XmlPullParser.TEXT:
+                                logBackgroundWork("  xml:text=" + xmlPullParser.getText());
+                                break;
+                            }
+                        }
+                        logBackgroundWork("  xml:end document");
+
+                        reader.close();
+                        connection.disconnect();
+                    } catch (MalformedURLException e) {
+                        Log.e(TAG, "MalformedURLException=" + e);
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        Log.e(TAG, "IOException=" + e);
+                        e.printStackTrace();
+                    } catch (XmlPullParserException e) {
+                        Log.e(TAG, "XmlPullParserException=" + e);
+                        e.printStackTrace();
+                    } finally {
+                        // Do finally thing.
+                    }
+                    return null;
+                }
+                @Override
+                protected void onProgressUpdate(String... progresses) {
+                    Log.i(TAG, "onProgressUpdate()");
+                    for (String progress : progresses) {
+                        mText.append(progress + "\n");
+                    }
+                }
+                private void logBackgroundWork(String message) {
+                    Log.i(TAG, message);
+                    publishProgress(message);
+                }
+            }.execute();
+        }
     }
 
     public static class NewsDetailFragment extends ListFragment {
         private static final String TAG = NewsDetailFragment.class.getSimpleName();
         public NewsDetailFragment() {}
-    }
-
-    private void loadXmlInBackground() {
-        new AsyncTask<Void, String, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                Log.i(TAG, "doInBackground()");
-                try {
-                    final URL url = new URL("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=" + Uri.encode("阪神"));
-                    final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("GET");
-                    connection.setInstanceFollowRedirects(false);
-
-                    logBackgroundWork("connecting to url=" + url);
-                    connection.connect();
-
-                    final Map<String, List<String>> headers = connection.getHeaderFields();
-                    logBackgroundWork("  headers=" + headers);
-
-                    final String contentType = connection.getContentType();
-                    logBackgroundWork("  contentType=" + contentType);
-
-                    final long date = connection.getDate();
-                    logBackgroundWork("  date=" + date);
-
-                    final String contentEncoding = connection.getContentEncoding();
-                    logBackgroundWork("  contentEncoding=" + contentEncoding);
-
-                    final String responseMessage = connection.getResponseMessage();
-                    logBackgroundWork("  responseMessage=" + responseMessage);
-
-                    final int responseCode = connection.getResponseCode();
-                    logBackgroundWork("  responseCode=" + responseCode);
-
-                    final InputStream content = (InputStream)connection.getContent();
-                    logBackgroundWork("  content=" + content);
-
-                    final BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-//                    while (true) {
-//                        final String line = reader.readLine();
-//                        if (line == null) {
-//                            break;
-//                        }
-//                        Log.i(TAG, line);
-//                    }
-                    final XmlPullParser xmlPullParser = Xml.newPullParser();
-                    xmlPullParser.setInput(reader);
-                    logBackgroundWork("parsing xml with pull parser...");
-                    for (int eventType = xmlPullParser.getEventType(); eventType != XmlPullParser.END_DOCUMENT; eventType = xmlPullParser.next()) {
-                        switch (eventType) {
-                        case XmlPullParser.START_DOCUMENT:
-                            logBackgroundWork("  xml:start document");
-                            break;
-                        case XmlPullParser.START_TAG:
-                            logBackgroundWork("  xml:start tag=" + xmlPullParser.getName());
-                            break;
-                        case XmlPullParser.END_TAG:
-                            logBackgroundWork("  xml:end tag=" + xmlPullParser.getName());
-                            break;
-                        case XmlPullParser.TEXT:
-                            logBackgroundWork("  xml:text=" + xmlPullParser.getText());
-                            break;
-                        }
-                    }
-                    logBackgroundWork("  xml:end document");
-
-                    reader.close();
-                    connection.disconnect();
-                } catch (MalformedURLException e) {
-                    Log.e(TAG, "MalformedURLException=" + e);
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    Log.e(TAG, "IOException=" + e);
-                    e.printStackTrace();
-                } catch (XmlPullParserException e) {
-                    Log.e(TAG, "XmlPullParserException=" + e);
-                    e.printStackTrace();
-                } finally {
-                    // Do finally thing.
-                }
-                return null;
-            }
-            @Override
-            protected void onProgressUpdate(String... progresses) {
-                Log.i(TAG, "onProgressUpdate()");
-                for (String progress : progresses) {
-                    mText.append(progress + "\n");
-                }
-            }
-            private void logBackgroundWork(String message) {
-                Log.i(TAG, message);
-                publishProgress(message);
-            }
-        }.execute();
     }
 }
