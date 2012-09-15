@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -125,10 +127,11 @@ public class MainActivity extends Activity {
         }
     }
 
-    public static class NewsListFragment extends Fragment {
+    public static class NewsListFragment extends ListFragment {
         private static final String TAG = NewsListFragment.class.getSimpleName();
 
-        private TextView mText;
+        private final GoogleNews mNews = new GoogleNews();
+//        private TextView mText;
 
         public NewsListFragment() {}
 
@@ -137,7 +140,7 @@ public class MainActivity extends Activity {
             Log.i(TAG, "onActivityCreated(savedInstanceState=" + savedInstanceState + ")");
             super.onActivityCreated(savedInstanceState);
 
-            mText = (TextView) getActivity().findViewById(R.id.text);
+//            mText = (TextView) getActivity().findViewById(R.id.text);
             final Bundle args = getArguments();
             loadXmlInBackground(args.getInt(TAG_NEWS_CATEGORY_ID));
         }
@@ -152,9 +155,9 @@ public class MainActivity extends Activity {
         }
 
         private void loadXmlInBackground(final int newsCategoryId) {
-            new AsyncTask<Void, String, Void>() {
+            new AsyncTask<Void, String, GoogleNews>() {
                 @Override
-                protected Void doInBackground(Void... params) {
+                protected GoogleNews doInBackground(Void... params) {
                     Log.i(TAG, "doInBackground()");
                     try {
                         final URL url = new URL(URIS[newsCategoryId].toString());
@@ -234,13 +237,18 @@ public class MainActivity extends Activity {
                 @Override
                 protected void onProgressUpdate(String... progresses) {
 //                    Log.i(TAG, "onProgressUpdate()");
-                    for (String progress : progresses) {
-                        mText.append(progress + "\n");
-                    }
+//                    for (String progress : progresses) {
+//                        mText.append(progress + "\n");
+//                    }
+                }
+                @Override
+                protected void onPostExecute(GoogleNews result) {
+                    final ListAdapter adapter = new ArrayAdapter<Map<String, String>>(getActivity(), android.R.layout.simple_list_item_1, result.mItems);
+                    setListAdapter(adapter);
                 }
                 private void logBackgroundWork(String message) {
                     Log.i(TAG, message);
-                    publishProgress(message);
+//                    publishProgress(message);
                 }
             }.execute();
         }
@@ -249,5 +257,11 @@ public class MainActivity extends Activity {
     public static class NewsDetailFragment extends ListFragment {
         private static final String TAG = NewsDetailFragment.class.getSimpleName();
         public NewsDetailFragment() {}
+    }
+
+    private static class GoogleNews {
+        private final Map<String, String> mInfo = new HashMap<String, String>();
+        private final Map<String, String> mImageInfo = new HashMap<String, String>();
+        private final List<Map<String, String>> mItems = new ArrayList<Map<String, String>>();
     }
 }
