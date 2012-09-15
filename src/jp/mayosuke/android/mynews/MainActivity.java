@@ -30,11 +30,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -297,18 +297,20 @@ public class MainActivity extends Activity {
 
             final Bundle args = getArguments();
             final Map<String, String> item = (Map<String, String>) args.getSerializable(TAG_NEWS_ITEM);
-            final WebView content = (WebView) getActivity().findViewById(R.id.content);
+//            final WebView content = (WebView) getActivity().findViewById(R.id.content);
+            final TextView content = (TextView) getActivity().findViewById(R.id.content);
             final String html = "<html><head><meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\"></head><body>" +
                         item.get("description") + "</body></html>";
-//            content.loadData(html, "text/html", "UTF-8");
-            content.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
+//            content.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
+            content.setText(item.get("description"));
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             Log.i(TAG, "onCreateView(savedInstanceState=" + savedInstanceState + ")");
 
-            final View view = inflater.inflate(R.layout.news_detail, null);
+//            final View view = inflater.inflate(R.layout.news_detail, null);
+            final View view = inflater.inflate(R.layout.activity_main, null);
             view.setBackgroundColor(Color.WHITE);
             return view;
         }
