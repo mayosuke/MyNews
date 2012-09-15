@@ -67,6 +67,55 @@ public class MainActivity extends Activity {
 
         mText = (TextView) findViewById(R.id.text);
 
+        loadXmlInBackground();
+
+        final String tag = "categoryList";
+        if (getFragmentManager().findFragmentByTag(tag) == null) {
+            final Fragment categoryList = new CategoryListFragment();
+            getFragmentManager().beginTransaction().add(android.R.id.content, categoryList, tag).addToBackStack(tag).commit();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
+    }
+
+    public static class CategoryListFragment extends ListFragment {
+        private static final String TAG = CategoryListFragment.class.getSimpleName();
+
+        public CategoryListFragment() {}
+
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            Log.i(TAG, "onActivityCreated(savedInstanceState=" + savedInstanceState + ")");
+            super.onActivityCreated(savedInstanceState);
+
+            final ListAdapter adapter = new ArrayAdapter<Uri>(getActivity(), android.R.layout.simple_list_item_1, URIS);
+            setListAdapter(adapter);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            final View view = super.onCreateView(inflater, container, savedInstanceState);
+            view.setBackgroundColor(Color.WHITE);
+            return view;
+        }
+
+    }
+
+    public static class NewsListFragment extends ListFragment {
+        private static final String TAG = NewsListFragment.class.getSimpleName();
+        public NewsListFragment() {}
+    }
+
+    public static class NewsDetailFragment extends ListFragment {
+        private static final String TAG = NewsDetailFragment.class.getSimpleName();
+        public NewsDetailFragment() {}
+    }
+
+    private void loadXmlInBackground() {
         new AsyncTask<Void, String, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -158,50 +207,5 @@ public class MainActivity extends Activity {
                 publishProgress(message);
             }
         }.execute();
-
-        final String tag = "categoryList";
-        if (getFragmentManager().findFragmentByTag(tag) == null) {
-            final Fragment categoryList = new CategoryListFragment();
-            getFragmentManager().beginTransaction().add(android.R.id.content, categoryList, tag).addToBackStack(tag).commit();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
-
-    public static class CategoryListFragment extends ListFragment {
-        private static final String TAG = CategoryListFragment.class.getSimpleName();
-
-        public CategoryListFragment() {}
-
-        @Override
-        public void onActivityCreated(Bundle savedInstanceState) {
-            Log.i(TAG, "onActivityCreated(savedInstanceState=" + savedInstanceState + ")");
-            super.onActivityCreated(savedInstanceState);
-
-            final ListAdapter adapter = new ArrayAdapter<Uri>(getActivity(), android.R.layout.simple_list_item_1, URIS);
-            setListAdapter(adapter);
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            final View view = super.onCreateView(inflater, container, savedInstanceState);
-            view.setBackgroundColor(Color.WHITE);
-            return view;
-        }
-
-    }
-
-    public static class NewsListFragment extends ListFragment {
-        private static final String TAG = NewsListFragment.class.getSimpleName();
-        public NewsListFragment() {}
-    }
-
-    public static class NewsDetailFragment extends ListFragment {
-        private static final String TAG = NewsDetailFragment.class.getSimpleName();
-        public NewsDetailFragment() {}
     }
 }
