@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -33,6 +34,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -65,6 +67,8 @@ public class MainActivity extends Activity {
     private static final String TAG_NEWS_CATEGORY_LIST = "categoryList";
     private static final String TAG_NEWS_LIST = "newsList";
     private static final String TAG_NEWS_CATEGORY_ID = "newsCategoryId";
+    private static final String TAG_NEWS_DETAIL = "newsDetail";
+    private static final String TAG_NEWS_ITEM = "newsItem";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -157,6 +161,21 @@ public class MainActivity extends Activity {
         @Override
         public void onListItemClick(ListView l, View v, int position, long id) {
             Log.i(TAG, "onListItemClick(position=" + position + ",id=" + id + ")");
+
+            final NewsDetailFragment newsList;
+            if (getFragmentManager().findFragmentByTag(TAG_NEWS_DETAIL) == null) {
+                Log.i(TAG, "  newsList fragment is already created.");
+                newsList = new NewsDetailFragment();
+            } else {
+                Log.i(TAG, "  newsList fragment is not created.");
+                newsList = (NewsDetailFragment) getFragmentManager().findFragmentByTag(TAG_NEWS_DETAIL);
+            }
+            final Bundle args = new Bundle();
+            args.putSerializable(TAG_NEWS_ITEM, (Serializable) mNews.mItems.get(position));
+            newsList.setArguments(args);
+            getFragmentManager().beginTransaction().add(android.R.id.content, newsList, TAG_NEWS_DETAIL).
+                    addToBackStack(TAG_NEWS_DETAIL).
+                    commit();
         }
 
         private void loadXmlInBackground(final int newsCategoryId) {
@@ -266,9 +285,31 @@ public class MainActivity extends Activity {
         }
     }
 
-    public static class NewsDetailFragment extends ListFragment {
+    public static class NewsDetailFragment extends Fragment {
         private static final String TAG = NewsDetailFragment.class.getSimpleName();
+
         public NewsDetailFragment() {}
+
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            Log.i(TAG, "onActivityCreated(savedInstanceState=" + savedInstanceState + ")");
+            super.onActivityCreated(savedInstanceState);
+
+            final Bundle args = getArguments();
+            final Map<String, String> item = (Map<String, String>) args.getSerializable(TAG_NEWS_ITEM);
+            final TextView text = (TextView) getActivity().findViewById(R.id.text);
+            text.setText(item.toString());
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            Log.i(TAG, "onCreateView(savedInstanceState=" + savedInstanceState + ")");
+
+            final View view = inflater.inflate(R.layout.activity_main, null);
+            view.setBackgroundColor(Color.WHITE);
+            return view;
+        }
+
     }
 
     private static class GoogleNews {
