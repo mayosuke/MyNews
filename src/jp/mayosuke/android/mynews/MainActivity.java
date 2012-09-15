@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -31,7 +32,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -131,7 +131,6 @@ public class MainActivity extends Activity {
         private static final String TAG = NewsListFragment.class.getSimpleName();
 
         private final GoogleNews mNews = new GoogleNews();
-//        private TextView mText;
 
         public NewsListFragment() {}
 
@@ -140,7 +139,7 @@ public class MainActivity extends Activity {
             Log.i(TAG, "onActivityCreated(savedInstanceState=" + savedInstanceState + ")");
             super.onActivityCreated(savedInstanceState);
 
-//            mText = (TextView) getActivity().findViewById(R.id.text);
+            getListView().setFastScrollEnabled(true);
             final Bundle args = getArguments();
             loadXmlInBackground(args.getInt(TAG_NEWS_CATEGORY_ID));
         }
@@ -207,12 +206,15 @@ public class MainActivity extends Activity {
                                 break;
                             case XmlPullParser.START_TAG:
                                 logBackgroundWork("  xml:start tag=" + xmlPullParser.getName());
+                                mNews.onXmlEvent(eventType, xmlPullParser.getName());
                                 break;
                             case XmlPullParser.END_TAG:
                                 logBackgroundWork("  xml:end tag=" + xmlPullParser.getName());
+                                mNews.onXmlEvent(eventType, xmlPullParser.getName());
                                 break;
                             case XmlPullParser.TEXT:
                                 logBackgroundWork("  xml:text=" + xmlPullParser.getText());
+                                mNews.onXmlEvent(eventType, xmlPullParser.getText());
                                 break;
                             }
                         }
@@ -232,7 +234,7 @@ public class MainActivity extends Activity {
                     } finally {
                         // Do finally thing.
                     }
-                    return null;
+                    return mNews;
                 }
                 @Override
                 protected void onProgressUpdate(String... progresses) {
@@ -260,8 +262,52 @@ public class MainActivity extends Activity {
     }
 
     private static class GoogleNews {
+        private static final String TAG_CHANNEL = "channel";
+        private static final String TAG_IMAGE = "image";
+        private static final String TAG_ITEM = "item";
+
+        private final Stack<String> mState = new Stack<String>();
         private final Map<String, String> mInfo = new HashMap<String, String>();
         private final Map<String, String> mImageInfo = new HashMap<String, String>();
         private final List<Map<String, String>> mItems = new ArrayList<Map<String, String>>();
+
+        private String mTag;
+
+        private void onXmlEvent(final int eventType, final String value) {
+            switch (eventType) {
+            case XmlPullParser.START_TAG:
+                mTag = value;
+                if (value.equalsIgnoreCase(TAG_CHANNEL) ||
+                        value.equalsIgnoreCase(TAG_IMAGE) ||
+                        value.equalsIgnoreCase(TAG_ITEM)) {
+                    mState.push(value);
+                }
+                if (value.equalsIgnoreCase(TAG_ITEM)) {
+                    mItems.add(new HashMap<String, String>());
+                }
+                break;
+            case XmlPullParser.TEXT:
+                if (mState.peek().equalsIgnoreCase(TAG_CHANNEL)) {
+                    mInfo.put(mTag, value);
+                    break;
+                }
+                if (mState.peek().equalsIgnoreCase(TAG_IMAGE)) {
+                    mImageInfo.put(mTag, value);
+                }
+                if (mState.peek().equalsIgnoreCase(TAG_ITEM)) {
+                    mItems.get(mItems.size() - 1).put(mTag, value);
+                }
+                break;
+            case XmlPullParser.END_TAG:
+                if (value.equalsIgnoreCase(TAG_CHANNEL) ||
+                        value.equalsIgnoreCase(TAG_IMAGE) ||
+                        value.equalsIgnoreCase(TAG_ITEM)) {
+                    mState.pop();
+                }
+                break;
+            default:
+                break;
+            }
+        }
     }
 }
