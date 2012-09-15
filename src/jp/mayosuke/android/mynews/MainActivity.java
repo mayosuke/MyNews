@@ -32,6 +32,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -153,6 +154,11 @@ public class MainActivity extends Activity {
             return view;
         }
 
+        @Override
+        public void onListItemClick(ListView l, View v, int position, long id) {
+            Log.i(TAG, "onListItemClick(position=" + position + ",id=" + id + ")");
+        }
+
         private void loadXmlInBackground(final int newsCategoryId) {
             new AsyncTask<Void, String, GoogleNews>() {
                 @Override
@@ -245,7 +251,11 @@ public class MainActivity extends Activity {
                 }
                 @Override
                 protected void onPostExecute(GoogleNews result) {
-                    final ListAdapter adapter = new ArrayAdapter<Map<String, String>>(getActivity(), android.R.layout.simple_list_item_1, result.mItems);
+                    final ListAdapter adapter = new SimpleAdapter(getActivity(),
+                            result.mItems,
+                            android.R.layout.simple_list_item_2,
+                            new String[] {"title", "pubDate"},
+                            new int[] {android.R.id.text1, android.R.id.text2});
                     setListAdapter(adapter);
                 }
                 private void logBackgroundWork(String message) {
