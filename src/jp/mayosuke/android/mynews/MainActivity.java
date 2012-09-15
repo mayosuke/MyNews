@@ -39,30 +39,36 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    private static final String[] CATEGORIES = {
+        "トップニュース",
+        "ピックアップ",
+        "社会",
+        "国際",
+        "ビジネス",
+        "政治",
+        "エンタメ",
+        "スポーツ",
+        "テクノロジー",
+        "話題のニュース",
+        "阪神",
+        "Android",
+        "iPhone",
+    }; 
     private static final Uri[] URIS = {
-        // トップニュース
         Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss"),
-        // ピックアップ
         Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&topic=ir"),
-        // 社会
         Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&topic=y"),
-        // 国際
         Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&topic=w"),
-        // ビジネス
         Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&topic=b"),
-        // 政治
         Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&topic=p"),
-        // エンタメ
         Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&topic=e"),
-        // スポーツ
         Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&topic=s"),
-        // テクノロジー
         Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&topic=t"),
-        // 話題のニュース
         Uri.parse("http://news.google.com/news?hl=ja&ie=UTF-8&oe=UTF-8&output=rss&topic=po"),
-        // 阪神という単語の入ったニュース
         Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=" + Uri.encode("阪神")),
-    };
+        Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=" + Uri.encode("Android")),
+        Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=" + Uri.encode("iPhone")),
+    }; 
 
     private static final String TAG_NEWS_CATEGORY_LIST = "categoryList";
     private static final String TAG_NEWS_LIST = "newsList";
@@ -99,7 +105,7 @@ public class MainActivity extends Activity {
             Log.i(TAG, "onActivityCreated(savedInstanceState=" + savedInstanceState + ")");
             super.onActivityCreated(savedInstanceState);
 
-            final ListAdapter adapter = new ArrayAdapter<Uri>(getActivity(), android.R.layout.simple_list_item_1, URIS);
+            final ListAdapter adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, CATEGORIES);
             setListAdapter(adapter);
         }
 
