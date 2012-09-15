@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    public static class NewsListFragment extends ListFragment {
+    public static class NewsListFragment extends Fragment {
         private static final String TAG = NewsListFragment.class.getSimpleName();
 
         private TextView mText;
@@ -141,9 +141,7 @@ public class MainActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             Log.i(TAG, "onCreateView(savedInstanceState=" + savedInstanceState + ")");
 
-            // FIXME: ニュースカテゴリの内容をTextViewで表示するために、super.onCreateView()の呼び出しを一時的に抑止する。
-//          final View view = super.onCreateView(inflater, container, savedInstanceState);
-            final View view = inflater.inflate(R.layout.activity_main, container);
+            final View view = inflater.inflate(R.layout.activity_main, null);
             view.setBackgroundColor(Color.WHITE);
             return view;
         }
