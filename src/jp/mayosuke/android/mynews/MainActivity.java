@@ -60,11 +60,11 @@ public class MainActivity extends Activity {
     };
 
     private static final String TAG_NEWS_CATEGORY_LIST = "categoryList";
-
-//    private TextView mText;
+    private static final String TAG_NEWS_LIST = "newsList";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate(savedInstanceState=" + savedInstanceState);
         super.onCreate(savedInstanceState);
 
         if (getFragmentManager().findFragmentByTag(TAG_NEWS_CATEGORY_LIST) == null) {
@@ -106,6 +106,18 @@ public class MainActivity extends Activity {
         @Override
         public void onListItemClick(ListView l, View v, int position, long id) {
             Log.i(TAG, "onListItemClick(position=" + position + ",id=" + id + ")");
+
+            final NewsListFragment newsList;
+            if (getFragmentManager().findFragmentByTag(TAG_NEWS_LIST) == null) {
+                Log.i(TAG, "  newsList fragment is already created.");
+                newsList = new NewsListFragment();
+            } else {
+                Log.i(TAG, "  newsList fragment is not created.");
+                newsList = (NewsListFragment) getFragmentManager().findFragmentByTag(TAG_NEWS_LIST);
+            }
+            getFragmentManager().beginTransaction().add(android.R.id.content, newsList, TAG_NEWS_LIST).
+                    addToBackStack(TAG_NEWS_LIST).
+                    commit();
         }
     }
 

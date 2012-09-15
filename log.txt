@@ -1,239 +1,33 @@
-09-13 23:42:18.567: I/MainActivity(6624): doInBackground()
-09-13 23:42:18.567: I/MainActivity(6624): connecting to url=http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=%E9%98%AA%E7%A5%9E
-09-13 23:42:18.614: D/libEGL(6624): loaded /system/lib/egl/libGLES_android.so
-09-13 23:42:18.614: D/libEGL(6624): loaded /vendor/lib/egl/libEGL_POWERVR_SGX540_120.so
-09-13 23:42:18.637: D/libEGL(6624): loaded /vendor/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so
-09-13 23:42:18.637: D/libEGL(6624): loaded /vendor/lib/egl/libGLESv2_POWERVR_SGX540_120.so
-09-13 23:42:18.746: D/OpenGLRenderer(6624): Enabling debug mode 0
-09-13 23:42:19.129: I/MainActivity(6624):   headers={null=[HTTP/1.1 200 OK], Cache-Control=[private], Content-Type=[application/xml; charset=UTF-8], Date=[Thu, 13 Sep 2012 14:42:19 GMT], Expires=[Thu, 13 Sep 2012 14:43:19 GMT], P3P=[CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657 for more info."], Server=[GSE], Set-Cookie=[], Transfer-Encoding=[chunked], X-Android-Received-Millis=[1347547339134], X-Android-Sent-Millis=[1347547338796], X-Content-Type-Options=[nosniff], X-Frame-Options=[SAMEORIGIN], X-XSS-Protection=[1; mode=block]}
-09-13 23:42:19.129: I/MainActivity(6624):   contentType=application/xml; charset=UTF-8
-09-13 23:42:19.129: I/MainActivity(6624):   date=1347547339000
-09-13 23:42:19.129: I/MainActivity(6624):   contentEncoding=null
-09-13 23:42:19.129: I/MainActivity(6624):   responseMessage=OK
-09-13 23:42:19.129: I/MainActivity(6624):   responseCode=200
-09-13 23:42:19.129: I/MainActivity(6624):   content=libcore.net.http.ChunkedInputStream@416ad0f8
-09-13 23:42:19.137: I/MainActivity(6624): parsing xml with pull parser...
-09-13 23:42:19.137: I/MainActivity(6624):   xml:start document
-09-13 23:42:19.137: I/MainActivity(6624):   xml:start tag=rss
-09-13 23:42:19.137: I/MainActivity(6624):   xml:start tag=channel
-09-13 23:42:19.137: I/MainActivity(6624):   xml:start tag=generator
-09-13 23:42:19.137: I/MainActivity(6624):   xml:text=NFE/1.0
-09-13 23:42:19.137: I/MainActivity(6624):   xml:end tag=generator
-09-13 23:42:19.137: I/MainActivity(6624):   xml:start tag=title
-09-13 23:42:19.137: I/MainActivity(6624):   xml:text=阪神 - Google News
-09-13 23:42:19.137: I/MainActivity(6624):   xml:end tag=title
-09-13 23:42:19.137: I/MainActivity(6624):   xml:start tag=link
-09-13 23:42:19.137: I/MainActivity(6624):   xml:text=http://news.google.com/news?ned=us&hl=ja&q=%E9%98%AA%E7%A5%9E
-09-13 23:42:19.137: I/MainActivity(6624):   xml:end tag=link
-09-13 23:42:19.137: I/MainActivity(6624):   xml:start tag=language
-09-13 23:42:19.137: I/MainActivity(6624):   xml:text=en
-09-13 23:42:19.145: I/MainActivity(6624):   xml:end tag=language
-09-13 23:42:19.145: I/MainActivity(6624):   xml:start tag=webMaster
-09-13 23:42:19.145: I/MainActivity(6624):   xml:text=news-feedback@google.com
-09-13 23:42:19.145: I/MainActivity(6624):   xml:end tag=webMaster
-09-13 23:42:19.145: I/MainActivity(6624):   xml:start tag=copyright
-09-13 23:42:19.145: I/MainActivity(6624):   xml:text=&copy;2012 Google
-09-13 23:42:19.145: I/MainActivity(6624):   xml:end tag=copyright
-09-13 23:42:19.145: I/MainActivity(6624):   xml:start tag=pubDate
-09-13 23:42:19.145: I/MainActivity(6624):   xml:text=Thu, 13 Sep 2012 14:42:19 GMT
-09-13 23:42:19.145: I/MainActivity(6624):   xml:end tag=pubDate
-09-13 23:42:19.145: I/MainActivity(6624):   xml:start tag=lastBuildDate
-09-13 23:42:19.145: I/MainActivity(6624):   xml:text=Thu, 13 Sep 2012 14:42:19 GMT
-09-13 23:42:19.145: I/MainActivity(6624):   xml:end tag=lastBuildDate
-09-13 23:42:19.145: I/MainActivity(6624):   xml:start tag=image
-09-13 23:42:19.145: I/MainActivity(6624):   xml:start tag=title
-09-13 23:42:19.145: I/MainActivity(6624):   xml:text=阪神 - Google News
-09-13 23:42:19.145: I/MainActivity(6624):   xml:end tag=title
-09-13 23:42:19.153: I/MainActivity(6624):   xml:start tag=url
-09-13 23:42:19.153: I/MainActivity(6624):   xml:text=http://www.gstatic.com/news/img/logo/en_us/news.gif
-09-13 23:42:19.153: I/MainActivity(6624):   xml:end tag=url
-09-13 23:42:19.153: I/MainActivity(6624):   xml:start tag=link
-09-13 23:42:19.153: I/MainActivity(6624):   xml:text=http://news.google.com/news?ned=us&hl=ja&q=%E9%98%AA%E7%A5%9E
-09-13 23:42:19.153: I/MainActivity(6624):   xml:end tag=link
-09-13 23:42:19.153: I/MainActivity(6624):   xml:end tag=image
-09-13 23:42:19.153: I/MainActivity(6624):   xml:start tag=item
-09-13 23:42:19.153: I/MainActivity(6624):   xml:start tag=title
-09-13 23:42:19.153: I/MainActivity(6624):   xml:text=金本 涙の引退…阪神社長“引退勧告”に抵抗も最後は決断 - スポーツニッポン
-09-13 23:42:19.153: I/MainActivity(6624):   xml:end tag=title
-09-13 23:42:19.153: I/MainActivity(6624):   xml:start tag=link
-09-13 23:42:19.153: I/MainActivity(6624):   xml:text=http://news.google.com/news/url?sa=t&fd=R&usg=AFQjCNGWqVOdp4d1L42qSh5dl9zoY5iqyw&url=http://www.sponichi.co.jp/baseball/news/2012/09/13/kiji/K20120913004102790.html
-09-13 23:42:19.153: I/MainActivity(6624):   xml:end tag=link
-09-13 23:42:19.153: I/MainActivity(6624):   xml:start tag=guid
-09-13 23:42:19.153: I/MainActivity(6624):   xml:text=tag:news.google.com,2005:cluster=http://www.sponichi.co.jp/baseball/news/2012/09/13/kiji/K20120913004102790.html
-09-13 23:42:19.153: I/MainActivity(6624):   xml:end tag=guid
-09-13 23:42:19.153: I/MainActivity(6624):   xml:start tag=pubDate
-09-13 23:42:19.153: I/MainActivity(6624):   xml:text=Wed, 12 Sep 2012 21:03:12 GMT
-09-13 23:42:19.153: I/MainActivity(6624):   xml:end tag=pubDate
-09-13 23:42:19.153: I/MainActivity(6624):   xml:start tag=description
-09-13 23:42:19.184: I/MainActivity(6624):   xml:text=<table border="0" cellpadding="2" cellspacing="7" style="vertical-align:top;"><tr><td width="80" align="center" valign="top"><font style="font-size:85%;font-family:arial,sans-serif"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNGAlm5DlWDPJdXTHjwf9hIdg9T7uQ&amp;url=http://www.kahoku.co.jp/news/2012/09/20120913t74023.htm"><img src="//nt1.ggpht.com/news/tbn/RWpzvsKpH5zrYM/6.jpg" alt="" border="1" width="80" height="80" /><br /><font size="-2">河北新報</font></a></font></td><td valign="top" class="j"><font style="font-size:85%;font-family:arial,sans-serif"><br /><div style="padding-top:0.8em;"><img alt="" height="1" width="1" /></div><div class="lh"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNGWqVOdp4d1L42qSh5dl9zoY5iqyw&amp;url=http://www.sponichi.co.jp/baseball/news/2012/09/13/kiji/K20120913004102790.html"><b>金本 涙の引退…<b>阪神</b>社長“引退勧告”に抵抗も最後は決断</b></a><br /><font size="-1"><b><font color="#6f6f6f">スポーツニッポン</font></b></font><br /><font size="-1"><b>阪神</b>の金本知憲外野手（４４）が１２日、兵庫県西宮市内のホテルで記者会見し、今季限りでの現役引退を発表した。１４９２試合連続フルイニング出場の世界記録など、数々の金字塔を打ち立ててきた「鉄人」。しかし、近年は右肩痛に苦しみ、今月２日に球団に初めて進退を委ね <b>...</b></font><br /><font size="-1"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNGAlm5DlWDPJdXTHjwf9hIdg9T7uQ&amp;url=http://www.kahoku.co.jp/news/2012/09/20120913t74023.htm">「アニキ」お疲れ！ <b>阪神</b>・金本選手が引退表明 東北</a><font size="-1" color="#6f6f6f"><nobr>河北新報</nobr></font></font><br /><font size="-1"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNFVud6wuf-6Z_kUsb78qcXWWeFnmQ&amp;url=http://osaka.yomiuri.co.jp/e-news/20120913-OYO1T00303.htm?from%3Dmain4">鉄人 悟った限界…<b>阪神</b>・金本引退</a><font size="-1" color="#6f6f6f"><nobr>読売新聞</nobr></font></font><br /><font size="-1"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNFT8ExO8zmwmlymtZfHf0RVdn9ifg&amp;url=http://www.hokkaido-np.co.jp/news/sports/403740.html"><b>阪神</b>・金本引退 ヤンキース黒田「実感わかない」 広島時代の先輩に敬意</a><font size="-1" color="#6f6f6f"><nobr>北海道新聞</nobr></font></font><br /><font size="-1" class="p"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNG_WTfD_h21Fdd_BbgirZdvzskVVA&amp;url=http://www.zakzak.co.jp/sports/baseball/news/20120913/bbl1209131131004-n1.htm"><nobr>ZAKZAK</nobr></a>&nbsp;-<a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNFqXfJNuMdaKZrpRmphvkdaKk7wwA&amp;url=http://www.nikkansports.com/baseball/news/p-bb-tp0-20120913-1015993.html"><nobr>日刊スポーツ</nobr></a>&nbsp;-<a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNFUWtXkLz6oiqOaHVXBCBNAQ0wZ8A&amp;url=http://www.47news.jp/sports/localsports/2012/09/post_20120913100946.html"><nobr>47NEWS</nobr></a></font><br /><font class="p" size="-1"><a class="p" href="http://news.google.com/news/more?ned=us&amp;hl=ja&amp;ncl=dExxY-2XKG901cMsfw7PvszWMMpsM&amp;region=jp"><nobr><b>all 147 news articles&nbsp;&raquo;</b></nobr></a></font></div></font></td></tr></table>
-09-13 23:42:19.184: I/MainActivity(6624):   xml:end tag=description
-09-13 23:42:19.184: I/MainActivity(6624):   xml:end tag=item
-09-13 23:42:19.184: I/MainActivity(6624):   xml:text= 
-09-13 23:42:19.184: I/MainActivity(6624):   xml:start tag=item
-09-13 23:42:19.184: I/MainActivity(6624):   xml:start tag=title
-09-13 23:42:19.184: I/MainActivity(6624):   xml:text=阪神スタンリッジ「ウイニングボールは金本さんに」 - MSN産経ニュース
-09-13 23:42:19.184: I/MainActivity(6624):   xml:end tag=title
-09-13 23:42:19.184: I/MainActivity(6624):   xml:start tag=link
-09-13 23:42:19.184: I/MainActivity(6624):   xml:text=http://news.google.com/news/url?sa=t&fd=R&usg=AFQjCNEt8mEUob0uHaTyIwVI_OudF4f78g&url=http://sankei.jp.msn.com/sports/news/120913/bbl12091322500011-n1.htm
-09-13 23:42:19.184: I/MainActivity(6624):   xml:end tag=link
-09-13 23:42:19.184: I/MainActivity(6624):   xml:start tag=guid
-09-13 23:42:19.184: I/MainActivity(6624):   xml:text=tag:news.google.com,2005:cluster=http://sankei.jp.msn.com/sports/news/120913/bbl12091322500011-n1.htm
-09-13 23:42:19.184: I/MainActivity(6624):   xml:end tag=guid
-09-13 23:42:19.184: I/MainActivity(6624):   xml:start tag=pubDate
-09-13 23:42:19.184: I/MainActivity(6624):   xml:text=Thu, 13 Sep 2012 13:54:46 GMT
-09-13 23:42:19.184: I/MainActivity(6624):   xml:end tag=pubDate
-09-13 23:42:19.184: I/MainActivity(6624):   xml:start tag=description
-09-13 23:42:19.223: I/MainActivity(6624):   xml:text=<table border="0" cellpadding="2" cellspacing="7" style="vertical-align:top;"><tr><td width="80" align="center" valign="top"><font style="font-size:85%;font-family:arial,sans-serif"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNE2amFSyTAfoPKaPubduHSEqAdwqA&amp;url=http://www.kahoku.co.jp/news/2012/09/2012091301001968.htm"><img src="//nt2.ggpht.com/news/tbn/Lu2oQaii1k34wM/6.jpg" alt="" border="1" width="80" height="80" /><br /><font size="-2">河北新報</font></a></font></td><td valign="top" class="j"><font style="font-size:85%;font-family:arial,sans-serif"><br /><div style="padding-top:0.8em;"><img alt="" height="1" width="1" /></div><div class="lh"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNEt8mEUob0uHaTyIwVI_OudF4f78g&amp;url=http://sankei.jp.msn.com/sports/news/120913/bbl12091322500011-n1.htm"><b><b>阪神</b>スタンリッジ「ウイニングボールは金本さんに」</b></a><br /><font size="-1"><b><font color="#6f6f6f">MSN産経ニュース</font></b></font><br /><font size="-1">７回ヤクルト２死、代打福地を遊ゴロに仕留めガッツポーズする<b>阪神</b>先発のスタンリッジ＝甲子園. <b>阪神</b>先発のスタンリッジが粘りの投球で７勝目を挙げた。７回で９安打を浴びたが、３併殺でピンチを切り抜けながら１失点にまとめ、「ゴロで打たせて取ることができたのはいい兆し。</font><br /><font size="-1"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNEsceKluIUP65KZBoYpIVigpJmDAg&amp;url=http://www.daily.co.jp/newsflash/tigers/2012/09/13/0005376862.shtml"><b>阪神</b>競り勝つ、スタンリッジは７勝目</a><font size="-1" color="#6f6f6f"><nobr>デイリースポーツ</nobr></font></font><br /><font size="-1"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNEiMEzi5yGf9RDv56RC7qHRs1wP0w&amp;url=http://www.jiji.com/jc/c?g%3Dspo_30%26k%3D2012091301006"><b>阪神</b>、連敗止める＝プロ野球・<b>阪神</b>－ヤクルト</a><font size="-1" color="#6f6f6f"><nobr>時事通信</nobr></font></font><br /><font size="-1"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNFZsQFFbLBkU9QSnNup4Estqq7MGw&amp;url=http://www.nikkei.com/article/DGXNSSXKE0919_T10C12A9000000/"><b>阪神</b>、小刻み継投で競り勝つ スタンリッジ７勝目</a><font size="-1" color="#6f6f6f"><nobr>日本経済新聞</nobr></font></font><br /><font size="-1" class="p"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNHOLc6CtosA8gSyJEROFr25yojLbQ&amp;url=http://www.asahi.com/sports/update/0913/TKY201209130559.html"><nobr>朝日新聞</nobr></a>&nbsp;-<a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNElhM3Eo64nhq0EkdkICriNhWynbw&amp;url=http://sportsnavi.yahoo.co.jp/baseball/npb/headlines/20120913-00000017-spnavi-base.html"><nobr>スポーツナビ</nobr></a>&nbsp;-<a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNEXcEhCND2jQavUcAtl8zvvMwqCow&amp;url=http://www.sponichi.co.jp/baseball/news/2012/09/13/kiji/K20120913004108780.html"><nobr>スポーツニッポン</nobr></a></font><br /><font class="p" size="-1"><a class="p" href="http://news.google.com/news/more?ned=us&amp;hl=ja&amp;ncl=dU4s4WpVGOgrEHMBVkyFvxf5pctBM&amp;region=jp"><nobr><b>all 23 news articles&nbsp;&raquo;</b></nobr></a></font></div></font></td></tr></table>
-09-13 23:42:19.223: I/MainActivity(6624):   xml:end tag=description
-09-13 23:42:19.223: I/MainActivity(6624):   xml:end tag=item
-09-13 23:42:19.223: I/MainActivity(6624):   xml:text= 
-09-13 23:42:19.223: I/MainActivity(6624):   xml:start tag=item
-09-13 23:42:19.223: I/MainActivity(6624):   xml:start tag=title
-09-13 23:42:19.223: I/MainActivity(6624):   xml:text=【阪神】アニキ貫禄！粘って押し出し四球 - 日刊スポーツ
-09-13 23:42:19.223: I/MainActivity(6624):   xml:end tag=title
-09-13 23:42:19.223: I/MainActivity(6624):   xml:start tag=link
-09-13 23:42:19.223: I/MainActivity(6624):   xml:text=http://news.google.com/news/url?sa=t&fd=R&usg=AFQjCNF4d7XhW5ytG6uO8n3BYNaaIHyOMA&url=http://www.nikkansports.com/baseball/news/f-bb-tp0-20120913-1016475.html
-09-13 23:42:19.223: I/MainActivity(6624):   xml:end tag=link
-09-13 23:42:19.223: I/MainActivity(6624):   xml:start tag=guid
-09-13 23:42:19.223: I/MainActivity(6624):   xml:text=tag:news.google.com,2005:cluster=http://www.nikkansports.com/baseball/news/f-bb-tp0-20120913-1016475.html
-09-13 23:42:19.223: I/MainActivity(6624):   xml:end tag=guid
-09-13 23:42:19.223: I/MainActivity(6624):   xml:start tag=pubDate
-09-13 23:42:19.223: I/MainActivity(6624):   xml:text=Thu, 13 Sep 2012 14:13:41 GMT
-09-13 23:42:19.223: I/MainActivity(6624):   xml:end tag=pubDate
-09-13 23:42:19.223: I/MainActivity(6624):   xml:start tag=description
-09-13 23:42:19.278: D/dalvikvm(6624): GC_CONCURRENT freed 240K, 3% free 12789K/13063K, paused 1ms+2ms
-09-13 23:42:19.278: I/MainActivity(6624):   xml:text=<table border="0" cellpadding="2" cellspacing="7" style="vertical-align:top;"><tr><td width="80" align="center" valign="top"><font style="font-size:85%;font-family:arial,sans-serif"></font></td><td valign="top" class="j"><font style="font-size:85%;font-family:arial,sans-serif"><br /><div style="padding-top:0.8em;"><img alt="" height="1" width="1" /></div><div class="lh"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNF4d7XhW5ytG6uO8n3BYNaaIHyOMA&amp;url=http://www.nikkansports.com/baseball/news/f-bb-tp0-20120913-1016475.html"><b>【<b>阪神</b>】アニキ貫禄！粘って押し出し四球</b></a><br /><font size="-1"><b><font color="#6f6f6f">日刊スポーツ</font></b></font><br /><font size="-1">今季限りで現役引退する<b>阪神</b>の金本知憲（４４）が１点リードの８回に代打で登場し、押し出し四球を得た。次打者席に立つと、この日一番の歓声を誘ったが「あれは（打席の）新井（貴）への声援やろ」と冗談めかした。１死満塁から左腕の正田にファウルで粘った末、貴重な追加点を <b>...</b></font><br /><font size="-1"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNHGnMsZiulcxsMwXJpr1ByJfBWloA&amp;url=http://sankei.jp.msn.com/sports/news/120913/bbl12091322540012-n1.htm">【プロ野球】 <b>阪神</b>金本は押し出し四球、ミスターまで４打点</a><font size="-1" color="#6f6f6f"><nobr>MSN産経ニュース</nobr></font></font><br /><font size="-1" class="p"></font><br /><font class="p" size="-1"><a class="p" href="http://news.google.com/news/more?ned=us&amp;hl=ja&amp;ncl=dCAcSFQSBx4_ZnM7kxY9e_idhYvzM&amp;region=jp"><nobr><b>all 3 news articles&nbsp;&raquo;</b></nobr></a></font></div></font></td></tr></table>
-09-13 23:42:19.278: I/MainActivity(6624):   xml:end tag=description
-09-13 23:42:19.278: I/MainActivity(6624):   xml:end tag=item
-09-13 23:42:19.278: I/MainActivity(6624):   xml:text= 
-09-13 23:42:19.278: I/MainActivity(6624):   xml:start tag=item
-09-13 23:42:19.278: I/MainActivity(6624):   xml:start tag=title
-09-13 23:42:19.278: I/MainActivity(6624):   xml:text=阪神 緊急編成会議へ…金本不在外野の補強どうする？ - スポーツニッポン
-09-13 23:42:19.278: I/MainActivity(6624):   xml:end tag=title
-09-13 23:42:19.278: I/MainActivity(6624):   xml:start tag=link
-09-13 23:42:19.278: I/MainActivity(6624):   xml:text=http://news.google.com/news/url?sa=t&fd=R&usg=AFQjCNFr2VaDUlGM3lId8ULp219WZilkBw&url=http://www.sponichi.co.jp/baseball/news/2012/09/13/kiji/K20120913004101070.html
-09-13 23:42:19.293: I/MainActivity(6624):   xml:end tag=link
-09-13 23:42:19.293: I/MainActivity(6624):   xml:start tag=guid
-09-13 23:42:19.293: I/MainActivity(6624):   xml:text=tag:news.google.com,2005:cluster=http://www.sponichi.co.jp/baseball/news/2012/09/13/kiji/K20120913004101070.html
-09-13 23:42:19.293: I/MainActivity(6624):   xml:end tag=guid
-09-13 23:42:19.293: I/MainActivity(6624):   xml:start tag=pubDate
-09-13 23:42:19.293: I/MainActivity(6624):   xml:text=Wed, 12 Sep 2012 21:03:20 GMT
-09-13 23:42:19.293: I/MainActivity(6624):   xml:end tag=pubDate
-09-13 23:42:19.293: I/MainActivity(6624):   xml:start tag=description
-09-13 23:42:19.301: I/MainActivity(6624):   xml:text=<table border="0" cellpadding="2" cellspacing="7" style="vertical-align:top;"><tr><td width="80" align="center" valign="top"><font style="font-size:85%;font-family:arial,sans-serif"></font></td><td valign="top" class="j"><font style="font-size:85%;font-family:arial,sans-serif"><br /><div style="padding-top:0.8em;"><img alt="" height="1" width="1" /></div><div class="lh"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNFr2VaDUlGM3lId8ULp219WZilkBw&amp;url=http://www.sponichi.co.jp/baseball/news/2012/09/13/kiji/K20120913004101070.html"><b><b>阪神</b> 緊急編成会議へ…金本不在外野の補強どうする？</b></a><br /><font size="-1"><b><font color="#6f6f6f">スポーツニッポン</font></b></font><br /><font size="-1"><b>阪神</b>・南信男球団社長は金本の引退表明を受け、１４～１６日のチームの東京遠征中に中村勝広新ＧＭらのフロント陣に加え、和田監督も交えて編成会議を行う考えを明かした。「戦力として大きいと思っていた。（引退後の来季に向けて）そのことについて、ＧＭも含めて編成会議を <b>...</b></font><br /><font size="-1" class="p"></font><br /><font class="p" size="-1"><a class="p" href="http://news.google.com/news/more?ned=us&amp;hl=ja&amp;ncl=daLNqsr32n1kgLM&amp;region=jp"><nobr><b></b></nobr></a></font></div></font></td></tr></table>
-09-13 23:42:19.317: I/MainActivity(6624):   xml:end tag=description
-09-13 23:42:19.317: I/MainActivity(6624):   xml:end tag=item
-09-13 23:42:19.317: I/MainActivity(6624):   xml:text= 
-09-13 23:42:19.317: I/MainActivity(6624):   xml:start tag=item
-09-13 23:42:19.317: I/MainActivity(6624):   xml:start tag=title
-09-13 23:42:19.317: I/MainActivity(6624):   xml:text=【阪神】マートン、３安打で勝利に貢献 - 日刊スポーツ
-09-13 23:42:19.317: I/MainActivity(6624):   xml:end tag=title
-09-13 23:42:19.317: I/MainActivity(6624):   xml:start tag=link
-09-13 23:42:19.317: I/MainActivity(6624):   xml:text=http://news.google.com/news/url?sa=t&fd=R&usg=AFQjCNG2gqIFxqm1Y_v0_ev5rT3hELHLAg&url=http://www.nikkansports.com/baseball/news/f-bb-tp0-20120913-1016471.html
-09-13 23:42:19.317: I/MainActivity(6624):   xml:end tag=link
-09-13 23:42:19.317: I/MainActivity(6624):   xml:start tag=guid
-09-13 23:42:19.317: I/MainActivity(6624):   xml:text=tag:news.google.com,2005:cluster=http://www.nikkansports.com/baseball/news/f-bb-tp0-20120913-1016471.html
-09-13 23:42:19.317: I/MainActivity(6624):   xml:end tag=guid
-09-13 23:42:19.317: I/MainActivity(6624):   xml:start tag=pubDate
-09-13 23:42:19.317: I/MainActivity(6624):   xml:text=Thu, 13 Sep 2012 13:46:07 GMT
-09-13 23:42:19.325: I/MainActivity(6624):   xml:end tag=pubDate
-09-13 23:42:19.325: I/MainActivity(6624):   xml:start tag=description
-09-13 23:42:19.332: I/MainActivity(6624):   xml:text=<table border="0" cellpadding="2" cellspacing="7" style="vertical-align:top;"><tr><td width="80" align="center" valign="top"><font style="font-size:85%;font-family:arial,sans-serif"></font></td><td valign="top" class="j"><font style="font-size:85%;font-family:arial,sans-serif"><br /><div style="padding-top:0.8em;"><img alt="" height="1" width="1" /></div><div class="lh"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNG2gqIFxqm1Y_v0_ev5rT3hELHLAg&amp;url=http://www.nikkansports.com/baseball/news/f-bb-tp0-20120913-1016471.html"><b>【<b>阪神</b>】マートン、３安打で勝利に貢献</b></a><br /><font size="-1"><b><font color="#6f6f6f">日刊スポーツ</font></b></font><br /><font size="-1"><b>阪神</b>マット・マートン外野手（３０）が今季９度目の３安打猛打賞の活躍を見せた。２、６回に安打で出塁すると、８回には無死一、二塁から左前へ運ぶヒットで無死満塁の絶好機をお膳立て。代打金本知憲外野手（４４）の押し出し四球などダメ押しの２点を呼び込んだ。マートンは「金 <b>...</b></font><br /><font size="-1" class="p"></font><br /><font class="p" size="-1"><a class="p" href="http://news.google.com/news/more?ned=us&amp;hl=ja&amp;ncl=dOktgr-U6Q8j8lM&amp;region=jp"><nobr><b></b></nobr></a></font></div></font></td></tr></table>
-09-13 23:42:19.332: I/MainActivity(6624):   xml:end tag=description
-09-13 23:42:19.332: I/MainActivity(6624):   xml:end tag=item
-09-13 23:42:19.332: I/MainActivity(6624):   xml:text= 
-09-13 23:42:19.332: I/MainActivity(6624):   xml:start tag=item
-09-13 23:42:19.332: I/MainActivity(6624):   xml:start tag=title
-09-13 23:42:19.332: I/MainActivity(6624):   xml:text=【阪神新馬戦】アドマイヤキンカク、小柄もムキッ - スポーツニッポン
-09-13 23:42:19.332: I/MainActivity(6624):   xml:end tag=title
-09-13 23:42:19.332: I/MainActivity(6624):   xml:start tag=link
-09-13 23:42:19.332: I/MainActivity(6624):   xml:text=http://news.google.com/news/url?sa=t&fd=R&usg=AFQjCNF6RxmoQ0bF8-Evoc4bxRFbg3Brag&url=http://www.sponichi.co.jp/gamble/news/2012/09/13/kiji/K20120913004100900.html
-09-13 23:42:19.332: I/MainActivity(6624):   xml:end tag=link
-09-13 23:42:19.332: I/MainActivity(6624):   xml:start tag=guid
-09-13 23:42:19.332: I/MainActivity(6624):   xml:text=tag:news.google.com,2005:cluster=http://www.sponichi.co.jp/gamble/news/2012/09/13/kiji/K20120913004100900.html
-09-13 23:42:19.332: I/MainActivity(6624):   xml:end tag=guid
-09-13 23:42:19.332: I/MainActivity(6624):   xml:start tag=pubDate
-09-13 23:42:19.332: I/MainActivity(6624):   xml:text=Wed, 12 Sep 2012 21:03:06 GMT
-09-13 23:42:19.332: I/MainActivity(6624):   xml:end tag=pubDate
-09-13 23:42:19.332: I/MainActivity(6624):   xml:start tag=description
-09-13 23:42:19.371: I/MainActivity(6624):   xml:text=<table border="0" cellpadding="2" cellspacing="7" style="vertical-align:top;"><tr><td width="80" align="center" valign="top"><font style="font-size:85%;font-family:arial,sans-serif"></font></td><td valign="top" class="j"><font style="font-size:85%;font-family:arial,sans-serif"><br /><div style="padding-top:0.8em;"><img alt="" height="1" width="1" /></div><div class="lh"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNF6RxmoQ0bF8-Evoc4bxRFbg3Brag&amp;url=http://www.sponichi.co.jp/gamble/news/2012/09/13/kiji/K20120913004100900.html"><b>【<b>阪神</b>新馬戦】アドマイヤキンカク、小柄もムキッ</b></a><br /><font size="-1"><b><font color="#6f6f6f">スポーツニッポン</font></b></font><br /><font size="-1">日曜<b>阪神</b>５Ｒ（芝１８００メートル）出走予定のアドマイヤキンカク（牡２＝友道、父ディープインパクト）が坂路で水曜追い。４Ｆ５５秒７～１Ｆ１３秒３で、アドマイヤメイプル（３歳未勝利）に１馬身先着した。「感触を確かめてもらうように。ここまで本数は乗っているので」と友道師。「ムキッ <b>...</b></font><br /><font size="-1" class="p"></font><br /><font class="p" size="-1"><a class="p" href="http://news.google.com/news/more?ned=us&amp;hl=ja&amp;ncl=dO5cbCp3vhPw5DM&amp;region=jp"><nobr><b>and more&nbsp;&raquo;</b></nobr></a></font></div></font></td></tr></table>
-09-13 23:42:19.371: I/MainActivity(6624):   xml:end tag=description
-09-13 23:42:19.371: I/MainActivity(6624):   xml:end tag=item
-09-13 23:42:19.371: I/MainActivity(6624):   xml:text= 
-09-13 23:42:19.371: I/MainActivity(6624):   xml:start tag=item
-09-13 23:42:19.371: I/MainActivity(6624):   xml:start tag=title
-09-13 23:42:19.371: I/MainActivity(6624):   xml:text=桂文枝、阪神・金本に「引き際がらしくていい」 - サンケイスポーツ
-09-13 23:42:19.371: I/MainActivity(6624):   xml:end tag=title
-09-13 23:42:19.371: I/MainActivity(6624):   xml:start tag=link
-09-13 23:42:19.371: I/MainActivity(6624):   xml:text=http://news.google.com/news/url?sa=t&fd=R&usg=AFQjCNF4oL7iWcLAH9BkIAgh408NCCRRog&url=http://www.sanspo.com/geino/news/20120913/oth12091311490019-n1.html
-09-13 23:42:19.371: I/MainActivity(6624):   xml:end tag=link
-09-13 23:42:19.371: I/MainActivity(6624):   xml:start tag=guid
-09-13 23:42:19.371: I/MainActivity(6624):   xml:text=tag:news.google.com,2005:cluster=http://www.sanspo.com/geino/news/20120913/oth12091311490019-n1.html
-09-13 23:42:19.371: I/MainActivity(6624):   xml:end tag=guid
-09-13 23:42:19.371: I/MainActivity(6624):   xml:start tag=pubDate
-09-13 23:42:19.371: I/MainActivity(6624):   xml:text=Thu, 13 Sep 2012 02:55:27 GMT
-09-13 23:42:19.371: I/MainActivity(6624):   xml:end tag=pubDate
-09-13 23:42:19.371: I/MainActivity(6624):   xml:start tag=description
-09-13 23:42:19.379: I/MainActivity(6624):   xml:text=<table border="0" cellpadding="2" cellspacing="7" style="vertical-align:top;"><tr><td width="80" align="center" valign="top"><font style="font-size:85%;font-family:arial,sans-serif"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNFmAVRMydPA2jNKrbCuQ6stUl7qFQ&amp;url=http://mantan-web.jp/2012/09/12/20120912dog00m200033000c.html"><img src="//nt2.ggpht.com/news/tbn/MqlkSUsWggSfcM/6.jpg" alt="" border="1" width="80" height="80" /><br /><font size="-2">まんたんウェブ</font></a></font></td><td valign="top" class="j"><font style="font-size:85%;font-family:arial,sans-serif"><br /><div style="padding-top:0.8em;"><img alt="" height="1" width="1" /></div><div class="lh"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNF4oL7iWcLAH9BkIAgh408NCCRRog&amp;url=http://www.sanspo.com/geino/news/20120913/oth12091311490019-n1.html"><b>桂文枝、<b>阪神</b>・金本に「引き際がらしくていい」</b></a><br /><font size="-1"><b><font color="#6f6f6f">サンケイスポーツ</font></b></font><br /><font size="-1">落語家、桂文枝（６９）が１２日、国立劇場で東京初の襲名披露公演を行った。満員の１６００人を前に「なかなか文枝と呼んでいただけない…」とあいさつ。創作落語「芸者ちどり・２４才」を披露し、大きな拍手を浴びた。 報道陣から<b>阪神</b>・金本の引退を伝えられ、「そうですか…</font><br /><font size="-1"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNHsuERMQ0DFXxm3qdpvRyeHth8AXA&amp;url=http://www.daily.co.jp/gossip/2012/09/13/0005374800.shtml">文枝、金本引退にショックでしばし絶句</a><font size="-1" color="#6f6f6f"><nobr>デイリースポーツ</nobr></font></font><br /><font size="-1"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNE7mAgI2APuxCWQxbcZcp2RJ-MXWg&amp;url=http://www.nikkansports.com/entertainment/news/p-et-tp0-20120913-1016021.html">桂文枝「まだ三枝さん」</a><font size="-1" color="#6f6f6f"><nobr>日刊スポーツ</nobr></font></font><br /><font size="-1" class="p"></font><br /><font class="p" size="-1"><a class="p" href="http://news.google.com/news/more?ned=us&amp;hl=ja&amp;ncl=dhvYUuLnxlSK-HM8EUjy4dM73i7OM&amp;region=jp"><nobr><b>all 13 news articles&nbsp;&raquo;</b></nobr></a></font></div></font></td></tr></table>
-09-13 23:42:19.379: I/MainActivity(6624):   xml:end tag=description
-09-13 23:42:19.379: I/MainActivity(6624):   xml:end tag=item
-09-13 23:42:19.379: I/MainActivity(6624):   xml:text= 
-09-13 23:42:19.379: I/MainActivity(6624):   xml:start tag=item
-09-13 23:42:19.379: I/MainActivity(6624):   xml:start tag=title
-09-13 23:42:19.387: I/MainActivity(6624):   xml:text=引退惜しむ阪神ナイン…中村ＧＭ「指導者としてグラウンドに」 - スポーツニッポン
-09-13 23:42:19.387: I/MainActivity(6624):   xml:end tag=title
-09-13 23:42:19.387: I/MainActivity(6624):   xml:start tag=link
-09-13 23:42:19.387: I/MainActivity(6624):   xml:text=http://news.google.com/news/url?sa=t&fd=R&usg=AFQjCNGBSS6bqN5FqrYmmh6pKWRIhYKYjg&url=http://www.sponichi.co.jp/baseball/news/2012/09/12/kiji/K20120912004099620.html
-09-13 23:42:19.387: I/MainActivity(6624):   xml:end tag=link
-09-13 23:42:19.387: I/MainActivity(6624):   xml:start tag=guid
-09-13 23:42:19.387: I/MainActivity(6624):   xml:text=tag:news.google.com,2005:cluster=http://www.sponichi.co.jp/baseball/news/2012/09/12/kiji/K20120912004099620.html
-09-13 23:42:19.387: I/MainActivity(6624):   xml:end tag=guid
-09-13 23:42:19.387: I/MainActivity(6624):   xml:start tag=pubDate
-09-13 23:42:19.387: I/MainActivity(6624):   xml:text=Wed, 12 Sep 2012 09:50:23 GMT
-09-13 23:42:19.387: I/MainActivity(6624):   xml:end tag=pubDate
-09-13 23:42:19.387: I/MainActivity(6624):   xml:start tag=description
-09-13 23:42:19.387: I/MainActivity(6624):   xml:text=<table border="0" cellpadding="2" cellspacing="7" style="vertical-align:top;"><tr><td width="80" align="center" valign="top"><font style="font-size:85%;font-family:arial,sans-serif"></font></td><td valign="top" class="j"><font style="font-size:85%;font-family:arial,sans-serif"><br /><div style="padding-top:0.8em;"><img alt="" height="1" width="1" /></div><div class="lh"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNGBSS6bqN5FqrYmmh6pKWRIhYKYjg&amp;url=http://www.sponichi.co.jp/baseball/news/2012/09/12/kiji/K20120912004099620.html"><b>引退惜しむ<b>阪神</b>ナイン…中村ＧＭ「指導者としてグラウンドに」</b></a><br /><font size="-1"><b><font color="#6f6f6f">スポーツニッポン</font></b></font><br /><font size="-1"><b>阪神</b>の金本知憲外野手（４４）が１２日、今季限りで現役引退することを発表した。２１年の現役生活を終える「鉄人」に、<b>阪神</b>の同僚、ゆかりの人物からも引退を惜しむ声とねぎらいの言葉が相次いだ。 ▽<b>阪神</b>・坂井オーナーの話 リーグ優勝の原動力となり、後輩の手本としてチーム <b>...</b></font><br /><font size="-1"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNFH7nkZw0y2gT1TFeJVjOQPPIxxBA&amp;url=http://daily.co.jp/tigers/2012/09/13/0005375070.shtml">金本、２日に南球団社長と会談</a><font size="-1" color="#6f6f6f"><nobr>デイリースポーツ</nobr></font></font><br /><font size="-1" class="p"></font><br /><font class="p" size="-1"><a class="p" href="http://news.google.com/news/more?ned=us&amp;hl=ja&amp;ncl=dY84vRANhi2DECMft2cuwmniCNjYM&amp;region=jp"><nobr><b>all 3 news articles&nbsp;&raquo;</b></nobr></a></font></div></font></td></tr></table>
-09-13 23:42:19.387: I/MainActivity(6624):   xml:end tag=description
-09-13 23:42:19.387: I/MainActivity(6624):   xml:end tag=item
-09-13 23:42:19.387: I/MainActivity(6624):   xml:text= 
-09-13 23:42:19.387: I/MainActivity(6624):   xml:start tag=item
-09-13 23:42:19.387: I/MainActivity(6624):   xml:start tag=title
-09-13 23:42:19.387: I/MainActivity(6624):   xml:text=【阪神新馬戦】「クロフネが強く出てる」サンライズネガノ３０日初陣 - スポーツニッポン
-09-13 23:42:19.387: I/MainActivity(6624):   xml:end tag=title
-09-13 23:42:19.387: I/MainActivity(6624):   xml:start tag=link
-09-13 23:42:19.403: I/MainActivity(6624):   xml:text=http://news.google.com/news/url?sa=t&fd=R&usg=AFQjCNGWUt0BNWrqMrFYUc257Sue-0XTwQ&url=http://www.sponichi.co.jp/gamble/news/2012/09/13/kiji/K20120913004105630.html
-09-13 23:42:19.403: I/MainActivity(6624):   xml:end tag=link
-09-13 23:42:19.403: I/MainActivity(6624):   xml:start tag=guid
-09-13 23:42:19.403: I/MainActivity(6624):   xml:text=tag:news.google.com,2005:cluster=http://www.sponichi.co.jp/gamble/news/2012/09/13/kiji/K20120913004105630.html
-09-13 23:42:19.403: I/MainActivity(6624):   xml:end tag=guid
-09-13 23:42:19.403: I/MainActivity(6624):   xml:start tag=pubDate
-09-13 23:42:19.403: I/MainActivity(6624):   xml:text=Thu, 13 Sep 2012 05:37:57 GMT
-09-13 23:42:19.403: I/MainActivity(6624):   xml:end tag=pubDate
-09-13 23:42:19.403: I/MainActivity(6624):   xml:start tag=description
-09-13 23:42:19.403: I/MainActivity(6624):   xml:text=<table border="0" cellpadding="2" cellspacing="7" style="vertical-align:top;"><tr><td width="80" align="center" valign="top"><font style="font-size:85%;font-family:arial,sans-serif"></font></td><td valign="top" class="j"><font style="font-size:85%;font-family:arial,sans-serif"><br /><div style="padding-top:0.8em;"><img alt="" height="1" width="1" /></div><div class="lh"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNGWUt0BNWrqMrFYUc257Sue-0XTwQ&amp;url=http://www.sponichi.co.jp/gamble/news/2012/09/13/kiji/K20120913004105630.html"><b>【<b>阪神</b>新馬戦】「クロフネが強く出てる」サンライズネガノ３０日初陣</b></a><br /><font size="-1"><b><font color="#6f6f6f">スポーツニッポン</font></b></font><br /><font size="-1">【<b>阪神</b>新馬戦】「クロフネが強く出てる」サンライズネガノ３０日初陣. サンライズネガノ（牡２＝安田、父クロフネ）は３０日の<b>阪神</b>ダート１４００メートル戦に鞍上川田でデビュー予定。重賞３勝を挙げている僚馬ダッシャーゴーゴーの半弟だ。 安田翔助手は「順調にゲートをクリアしてくれた <b>...</b></font><br /><font size="-1" class="p"></font><br /><font class="p" size="-1"><a class="p" href="http://news.google.com/news/more?ned=us&amp;hl=ja&amp;ncl=dpsJmDsfsPT06nM&amp;region=jp"><nobr><b></b></nobr></a></font></div></font></td></tr></table>
-09-13 23:42:19.411: I/MainActivity(6624):   xml:end tag=description
-09-13 23:42:19.411: I/MainActivity(6624):   xml:end tag=item
-09-13 23:42:19.411: I/MainActivity(6624):   xml:text= 
-09-13 23:42:19.411: I/MainActivity(6624):   xml:start tag=item
-09-13 23:42:19.411: I/MainActivity(6624):   xml:start tag=title
-09-13 23:42:19.411: I/MainActivity(6624):   xml:text=阪神・中村ＧＭ、金本に「兼任コーチ考えていた」 - サンケイスポーツ
-09-13 23:42:19.411: I/MainActivity(6624):   xml:end tag=title
-09-13 23:42:19.411: I/MainActivity(6624):   xml:start tag=link
-09-13 23:42:19.411: I/MainActivity(6624):   xml:text=http://news.google.com/news/url?sa=t&fd=R&usg=AFQjCNFByJPtCMmfgFfaaNAe-8mCTOV1qw&url=http://www.sanspo.com/baseball/news/20120912/tig12091218320013-n1.html
-09-13 23:42:19.411: I/MainActivity(6624):   xml:end tag=link
-09-13 23:42:19.411: I/MainActivity(6624):   xml:start tag=guid
-09-13 23:42:19.411: I/MainActivity(6624):   xml:text=tag:news.google.com,2005:cluster=http://www.sanspo.com/baseball/news/20120912/tig12091218320013-n1.html
-09-13 23:42:19.411: I/MainActivity(6624):   xml:end tag=guid
-09-13 23:42:19.411: I/MainActivity(6624):   xml:start tag=pubDate
-09-13 23:42:19.411: I/MainActivity(6624):   xml:text=Wed, 12 Sep 2012 09:34:52 GMT
-09-13 23:42:19.411: I/MainActivity(6624):   xml:end tag=pubDate
-09-13 23:42:19.411: I/MainActivity(6624):   xml:start tag=description
-09-13 23:42:19.411: I/MainActivity(6624):   xml:text=<table border="0" cellpadding="2" cellspacing="7" style="vertical-align:top;"><tr><td width="80" align="center" valign="top"><font style="font-size:85%;font-family:arial,sans-serif"></font></td><td valign="top" class="j"><font style="font-size:85%;font-family:arial,sans-serif"><br /><div style="padding-top:0.8em;"><img alt="" height="1" width="1" /></div><div class="lh"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNFByJPtCMmfgFfaaNAe-8mCTOV1qw&amp;url=http://www.sanspo.com/baseball/news/20120912/tig12091218320013-n1.html"><b><b>阪神</b>・中村ＧＭ、金本に「兼任コーチ考えていた」</b></a><br /><font size="-1"><b><font color="#6f6f6f">サンケイスポーツ</font></b></font><br /><font size="-1">プロ野球<b>阪神</b>の金本知憲外野手（４４）が１２日、兵庫県西宮市のホテルで記者会見し、プロ２１年目の今季限りでの現役引退を表明した。 <b>阪神</b>・中村勝広ゼネラルマネジャーの話「あらためてこうなると、これからどうしようという思い。（来季も）残ってくれた暁には兼任コーチを要請 <b>...</b></font><br /><font size="-1"><a href="http://news.google.com/news/url?sa=t&amp;fd=R&amp;usg=AFQjCNECKztZZAr1m5dMnU0x6Ax5iP9MvA&amp;url=http://hochi.yomiuri.co.jp/osaka/baseball/npb/news/20120913-OHO1T00103.htm">中村ＧＭ、金本に将来はコーチで！来季就任は否定…<b>阪神</b></a><font size="-1" color="#6f6f6f"><nobr>スポーツ報知</nobr></font></font><br /><font size="-1" class="p"></font><br /><font class="p" size="-1"><a class="p" href="http://news.google.com/news/more?ned=us&amp;hl=ja&amp;ncl=dzvPN5T4Vgsq_SMs4MDE4F9YulThM&amp;region=jp"><nobr><b>all 2 news articles&nbsp;&raquo;</b></nobr></a></font></div></font></td></tr></table>
-09-13 23:42:19.418: I/MainActivity(6624):   xml:end tag=description
-09-13 23:42:19.418: I/MainActivity(6624):   xml:end tag=item
-09-13 23:42:19.418: I/MainActivity(6624):   xml:start tag=description
-09-13 23:42:19.418: I/MainActivity(6624):   xml:text=Google News
-09-13 23:42:19.418: I/MainActivity(6624):   xml:end tag=description
-09-13 23:42:19.418: I/MainActivity(6624):   xml:end tag=channel
-09-13 23:42:19.418: I/MainActivity(6624):   xml:end tag=rss
-09-13 23:42:19.418: I/MainActivity(6624):   xml:end document
+09-15 10:15:16.708: I/MainActivity(17414): onCreate(savedInstanceState=null
+09-15 10:15:16.747: I/CategoryListFragment(17414): onCreateView(savedInstanceState=null)
+09-15 10:15:16.755: I/CategoryListFragment(17414): onActivityCreated(savedInstanceState=null)
+09-15 10:15:16.794: D/libEGL(17414): loaded /system/lib/egl/libGLES_android.so
+09-15 10:15:16.802: D/libEGL(17414): loaded /vendor/lib/egl/libEGL_POWERVR_SGX540_120.so
+09-15 10:15:16.810: D/libEGL(17414): loaded /vendor/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so
+09-15 10:15:16.817: D/libEGL(17414): loaded /vendor/lib/egl/libGLESv2_POWERVR_SGX540_120.so
+09-15 10:15:16.888: D/OpenGLRenderer(17414): Enabling debug mode 0
+09-15 10:15:23.435: I/CategoryListFragment(17414): onListItemClick(position=2,id=2)
+09-15 10:15:23.435: I/CategoryListFragment(17414):   newsList fragment is already created.
+09-15 10:15:23.435: I/NewsListFragment(17414): onCreateView(savedInstanceState=null)
+09-15 10:15:23.435: D/AndroidRuntime(17414): Shutting down VM
+09-15 10:15:23.442: W/dalvikvm(17414): threadid=1: thread exiting with uncaught exception (group=0x40a641f8)
+09-15 10:15:23.442: E/AndroidRuntime(17414): FATAL EXCEPTION: main
+09-15 10:15:23.442: E/AndroidRuntime(17414): java.lang.IllegalStateException: The specified child already has a parent. You must call removeView() on the child's parent first.
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.view.ViewGroup.addViewInner(ViewGroup.java:3337)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.view.ViewGroup.addView(ViewGroup.java:3208)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.view.ViewGroup.addView(ViewGroup.java:3165)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.view.ViewGroup.addView(ViewGroup.java:3145)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.app.FragmentManagerImpl.moveToState(FragmentManager.java:839)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.app.FragmentManagerImpl.moveToState(FragmentManager.java:1032)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.app.BackStackRecord.run(BackStackRecord.java:622)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.app.FragmentManagerImpl.execPendingActions(FragmentManager.java:1382)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.app.FragmentManagerImpl$1.run(FragmentManager.java:426)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.os.Handler.handleCallback(Handler.java:605)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.os.Handler.dispatchMessage(Handler.java:92)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.os.Looper.loop(Looper.java:137)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at android.app.ActivityThread.main(ActivityThread.java:4424)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at java.lang.reflect.Method.invokeNative(Native Method)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at java.lang.reflect.Method.invoke(Method.java:511)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+09-15 10:15:23.442: E/AndroidRuntime(17414): 	at dalvik.system.NativeStart.main(Native Method)
