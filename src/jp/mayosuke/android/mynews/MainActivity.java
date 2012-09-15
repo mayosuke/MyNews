@@ -149,7 +149,7 @@ public class MainActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             Log.i(TAG, "onCreateView(savedInstanceState=" + savedInstanceState + ")");
 
-            final View view = inflater.inflate(R.layout.activity_main, null);
+            final View view = super.onCreateView(inflater, container, savedInstanceState);
             view.setBackgroundColor(Color.WHITE);
             return view;
         }
