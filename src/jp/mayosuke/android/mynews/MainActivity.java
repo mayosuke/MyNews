@@ -61,6 +61,7 @@ public class MainActivity extends Activity {
 
     private static final String TAG_NEWS_CATEGORY_LIST = "categoryList";
     private static final String TAG_NEWS_LIST = "newsList";
+    private static final String TAG_NEWS_CATEGORY_ID = "newsCategoryId";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,6 +116,9 @@ public class MainActivity extends Activity {
                 Log.i(TAG, "  newsList fragment is not created.");
                 newsList = (NewsListFragment) getFragmentManager().findFragmentByTag(TAG_NEWS_LIST);
             }
+            final Bundle args = new Bundle();
+            args.putInt(TAG_NEWS_CATEGORY_ID, position);
+            newsList.setArguments(args);
             getFragmentManager().beginTransaction().add(android.R.id.content, newsList, TAG_NEWS_LIST).
                     addToBackStack(TAG_NEWS_LIST).
                     commit();
@@ -134,7 +138,8 @@ public class MainActivity extends Activity {
             super.onActivityCreated(savedInstanceState);
 
             mText = (TextView) getActivity().findViewById(R.id.text);
-            loadXmlInBackground();
+            final Bundle args = getArguments();
+            loadXmlInBackground(args.getInt(TAG_NEWS_CATEGORY_ID));
         }
 
         @Override
@@ -146,13 +151,13 @@ public class MainActivity extends Activity {
             return view;
         }
 
-        private void loadXmlInBackground() {
+        private void loadXmlInBackground(final int newsCategoryId) {
             new AsyncTask<Void, String, Void>() {
                 @Override
                 protected Void doInBackground(Void... params) {
                     Log.i(TAG, "doInBackground()");
                     try {
-                        final URL url = new URL("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=" + Uri.encode("阪神"));
+                        final URL url = new URL(URIS[newsCategoryId].toString());
                         final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                         connection.setRequestMethod("GET");
                         connection.setInstanceFollowRedirects(false);
@@ -228,7 +233,7 @@ public class MainActivity extends Activity {
                 }
                 @Override
                 protected void onProgressUpdate(String... progresses) {
-                    Log.i(TAG, "onProgressUpdate()");
+//                    Log.i(TAG, "onProgressUpdate()");
                     for (String progress : progresses) {
                         mText.append(progress + "\n");
                     }
