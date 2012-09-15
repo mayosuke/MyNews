@@ -71,7 +71,6 @@ public class MainActivity extends Activity {
             final Fragment categoryList = new CategoryListFragment();
             getFragmentManager().beginTransaction().
                     add(android.R.id.content, categoryList, TAG_NEWS_CATEGORY_LIST).
-                    addToBackStack(TAG_NEWS_CATEGORY_LIST).
                     commit();
         }
     }
