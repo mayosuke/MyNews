@@ -26,12 +26,14 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -293,8 +295,11 @@ public class MainActivity extends Activity {
         }
     }
 
-    public static class NewsDetailFragment extends Fragment {
+    public static class NewsDetailFragment extends ListFragment {
         private static final String TAG = NewsDetailFragment.class.getSimpleName();
+
+        private Map<String, String> mItem;
+        private Document mJsoup;
 
         public NewsDetailFragment() {}
 
@@ -304,24 +309,56 @@ public class MainActivity extends Activity {
             super.onActivityCreated(savedInstanceState);
 
             final Bundle args = getArguments();
-            final Map<String, String> item = (Map<String, String>) args.getSerializable(TAG_NEWS_ITEM);
-//            final WebView content = (WebView) getActivity().findViewById(R.id.content);
-            final TextView content = (TextView) getActivity().findViewById(R.id.content);
+            mItem = (Map<String, String>) args.getSerializable(TAG_NEWS_ITEM);
             final String html = "<html><head><meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\"></head><body>" +
-                        item.get("description") + "</body></html>";
-//            content.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
-            content.setText(html);
-
-            final Document jsoup = Jsoup.parse(html);
-            content.setText(jsoup.toString());
+                        mItem.get("description") + "</body></html>";
+            mJsoup = Jsoup.parse(html);
+            final Integer[] layouts = {
+                    Integer.valueOf(R.layout.content_text),
+                    Integer.valueOf(R.layout.content),
+                    Integer.valueOf(R.layout.content_text),
+            };
+            final ListAdapter adapter = new ArrayAdapter<Integer>(getActivity(), 0, layouts) {
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    final View view;
+                    if (convertView == null) {
+                        view = View.inflate(getContext(), getItem(position).intValue(), null);
+                    } else {
+                        view = convertView;
+                    }
+                    switch (position) {
+                    case 0: {
+                        final TextView content = (TextView) view.findViewById(R.id.content);
+                        content.setText(Html.fromHtml(mJsoup.toString()));
+                        break;
+                    }
+                    case 1: {
+                        final WebView content = (WebView) view.findViewById(R.id.content);
+                        content.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
+                        break;
+                    }
+                    case 2: {
+                        final TextView content = (TextView) view.findViewById(R.id.content);
+                        content.setText(mJsoup.toString());
+                        break;
+                    }
+                    default:
+                        // DO NOTHING.
+                        break;
+                    }
+                    return view;
+                }
+            };
+            setListAdapter(adapter);
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             Log.i(TAG, "onCreateView(savedInstanceState=" + savedInstanceState + ")");
-
+            final View view = super.onCreateView(inflater, container, savedInstanceState);
 //            final View view = inflater.inflate(R.layout.news_detail, null);
-            final View view = inflater.inflate(R.layout.activity_main, null);
+//            final View view = inflater.inflate(R.layout.activity_main, null);
             view.setBackgroundColor(Color.WHITE);
             return view;
         }
