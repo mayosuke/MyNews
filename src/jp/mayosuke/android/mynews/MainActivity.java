@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -308,8 +310,10 @@ public class MainActivity extends Activity {
             final String html = "<html><head><meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\"></head><body>" +
                         item.get("description") + "</body></html>";
 //            content.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
-//            content.setText(item.get("description"));
             content.setText(html);
+
+            final Document jsoup = Jsoup.parse(html);
+            content.setText(jsoup.toString());
         }
 
         @Override
