@@ -308,7 +308,8 @@ public class MainActivity extends Activity {
             final String html = "<html><head><meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\"></head><body>" +
                         item.get("description") + "</body></html>";
 //            content.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
-            content.setText(item.get("description"));
+//            content.setText(item.get("description"));
+            content.setText(html);
         }
 
         @Override
