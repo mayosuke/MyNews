@@ -22,6 +22,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -34,6 +35,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -335,6 +337,23 @@ public class MainActivity extends Activity {
                     }
                     case 1: {
                         final WebView content = (WebView) view.findViewById(R.id.content);
+                        content.setWebViewClient(new WebViewClient() {
+                            @Override
+                            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                                Log.i(TAG, "shouldOverrideUrlLoading(url=" + url + ")");
+                                return super.shouldOverrideUrlLoading(view, url);
+                            }
+                            @Override
+                            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                                Log.i(TAG, "onPageStarted(url=" + url + ")");
+                            }
+                            @Override
+                            public void onPageFinished(WebView view, String url) {
+                                Log.i(TAG, "onPageFinished(url=" + url + ")");
+                            }
+                        });
+                        content.getSettings().setJavaScriptEnabled(true);
+                        content.getSettings().setPluginsEnabled(true);
                         content.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
                         break;
                     }
