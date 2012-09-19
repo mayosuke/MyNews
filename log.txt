@@ -1,1 +1,1 @@
-https://groups.google.com/forum/?fromgroups=#!topic/android-group-japan/wyjT24MWnoU
+ListViewの中に入れたWebViewで長押ししての検索は、別のリストアイテムにまでは効かない。。
