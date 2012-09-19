@@ -16,6 +16,7 @@ import java.util.Stack;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -362,7 +363,10 @@ public class MainActivity extends Activity {
                     case 3: {
                         final TextView content = (TextView) view.findViewById(R.id.content);
                         Elements aTags = mJsoup.getElementsByTag("a");
-                        content.setText(aTags.toString());
+                        content.setText("");
+                        for (Element aTag : aTags) {
+                            content.setText(aTag.)
+                        }
                         break;
                     }
                     default:
