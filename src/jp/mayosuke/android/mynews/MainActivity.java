@@ -16,6 +16,7 @@ import java.util.Stack;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -319,16 +320,12 @@ public class MainActivity extends Activity {
                     Integer.valueOf(R.layout.content_text),
                     Integer.valueOf(R.layout.content),
                     Integer.valueOf(R.layout.content_text),
+                    Integer.valueOf(R.layout.content_text),
             };
             final ListAdapter adapter = new ArrayAdapter<Integer>(getActivity(), 0, layouts) {
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
-                    final View view;
-                    if (convertView == null) {
-                        view = View.inflate(getContext(), getItem(position).intValue(), null);
-                    } else {
-                        view = convertView;
-                    }
+                    final View view = View.inflate(getContext(), getItem(position).intValue(), null);
                     switch (position) {
                     case 0: {
                         final TextView content = (TextView) view.findViewById(R.id.content);
@@ -360,6 +357,12 @@ public class MainActivity extends Activity {
                     case 2: {
                         final TextView content = (TextView) view.findViewById(R.id.content);
                         content.setText(mJsoup.toString());
+                        break;
+                    }
+                    case 3: {
+                        final TextView content = (TextView) view.findViewById(R.id.content);
+                        Elements aTags = mJsoup.getElementsByTag("a");
+                        content.setText(aTags.toString());
                         break;
                     }
                     default:
