@@ -41,6 +41,7 @@ public class NewsListFragment extends ListFragment {
 
         getListView().setFastScrollEnabled(true);
         final Bundle args = getArguments();
+        getActivity().getActionBar().setTitle(Constants.CATEGORIES[args.getInt(Constants.TAG_NEWS_CATEGORY_ID)]);
         loadXmlInBackground(args.getInt(Constants.TAG_NEWS_CATEGORY_ID));
     }
 
@@ -65,8 +66,10 @@ public class NewsListFragment extends ListFragment {
             Log.i(TAG, "  newsList fragment is not created.");
             newsList = (NewsDetailFragment) getFragmentManager().findFragmentByTag(Constants.TAG_NEWS_DETAIL);
         }
-        final Bundle args = new Bundle();
+
+        final Bundle args = getArguments();
         args.putSerializable(Constants.TAG_NEWS_ITEM, (Serializable) mNews.getItems().get(position));
+
         newsList.setArguments(args);
         getFragmentManager().beginTransaction().add(android.R.id.content, newsList, Constants.TAG_NEWS_DETAIL).
                 addToBackStack(Constants.TAG_NEWS_DETAIL).

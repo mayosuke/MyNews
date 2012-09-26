@@ -35,6 +35,9 @@ public class NewsDetailFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
 
         final Bundle args = getArguments();
+
+        getActivity().getActionBar().setTitle(Constants.CATEGORIES[args.getInt(Constants.TAG_NEWS_CATEGORY_ID)]);
+
         mItem = (Map<String, String>) args.getSerializable(Constants.TAG_NEWS_ITEM);
         final String html = "<html><head><meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\"></head><body>" +
                     mItem.get("description") + "</body></html>";

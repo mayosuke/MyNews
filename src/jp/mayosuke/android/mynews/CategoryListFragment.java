@@ -52,4 +52,11 @@ public class CategoryListFragment extends ListFragment {
                 addToBackStack(Constants.TAG_NEWS_LIST).
                 commit();
     }
+
+    @Override
+    public void onResume() {
+        Log.i(TAG, "onResume()");
+        super.onResume();
+        getActivity().getActionBar().setTitle(R.string.app_name);
+    }
 }
