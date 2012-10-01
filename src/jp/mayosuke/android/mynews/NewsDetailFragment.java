@@ -44,6 +44,7 @@ public class NewsDetailFragment extends ListFragment {
                     mItem.get("description") + "</body></html>";
         mJsoup = Jsoup.parse(html);
         final Integer[] layouts = {
+                Integer.valueOf(R.layout.summary),
                 Integer.valueOf(R.layout.content_text),
                 Integer.valueOf(R.layout.content),
                 Integer.valueOf(R.layout.content_text),
@@ -55,11 +56,15 @@ public class NewsDetailFragment extends ListFragment {
                 final View view = View.inflate(getContext(), getItem(position).intValue(), null);
                 switch (position) {
                 case 0: {
+                    
+                    break;
+                }
+                case 1: {
                     final TextView content = (TextView) view.findViewById(R.id.content);
                     content.setText(Html.fromHtml(mJsoup.toString()));
                     break;
                 }
-                case 1: {
+                case 2: {
                     final WebView content = (WebView) view.findViewById(R.id.content);
                     content.setWebViewClient(new WebViewClient() {
                         @Override
@@ -81,12 +86,12 @@ public class NewsDetailFragment extends ListFragment {
                     content.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
                     break;
                 }
-                case 2: {
+                case 3: {
                     final TextView content = (TextView) view.findViewById(R.id.content);
                     content.setText(mJsoup.toString());
                     break;
                 }
-                case 3: {
+                case 4: {
                     final TextView content = (TextView) view.findViewById(R.id.content);
                     Elements aTags = mJsoup.getElementsByTag("a");
                     content.setText(aTags.toString());
