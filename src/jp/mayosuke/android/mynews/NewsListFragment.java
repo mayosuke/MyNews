@@ -119,25 +119,25 @@ public class NewsListFragment extends ListFragment {
 //                        }
 //                        Log.i(TAG, line);
 //                    }
-                    final XmlPullParser xmlPullParser = Xml.newPullParser();
-                    xmlPullParser.setInput(reader);
+                    final XmlPullParser parser = Xml.newPullParser();
+                    parser.setInput(reader);
                     logBackgroundWork("parsing xml with pull parser...");
-                    for (int eventType = xmlPullParser.getEventType(); eventType != XmlPullParser.END_DOCUMENT; eventType = xmlPullParser.next()) {
+                    for (int eventType = parser.getEventType(); eventType != XmlPullParser.END_DOCUMENT; eventType = parser.next()) {
                         switch (eventType) {
                         case XmlPullParser.START_DOCUMENT:
                             logBackgroundWork("  xml:start document");
                             break;
                         case XmlPullParser.START_TAG:
-                            logBackgroundWork("  xml:start tag=" + xmlPullParser.getName());
-                            mNews.onXmlEvent(eventType, xmlPullParser.getName());
+                            logBackgroundWork("  xml:start tag=" + parser.getName());
+                            mNews.onXmlEvent(eventType, parser.getName());
                             break;
                         case XmlPullParser.END_TAG:
-                            logBackgroundWork("  xml:end tag=" + xmlPullParser.getName());
-                            mNews.onXmlEvent(eventType, xmlPullParser.getName());
+                            logBackgroundWork("  xml:end tag=" + parser.getName());
+                            mNews.onXmlEvent(eventType, parser.getName());
                             break;
                         case XmlPullParser.TEXT:
-                            logBackgroundWork("  xml:text=" + xmlPullParser.getText());
-                            mNews.onXmlEvent(eventType, xmlPullParser.getText());
+                            logBackgroundWork("  xml:text=" + parser.getText());
+                            mNews.onXmlEvent(eventType, parser.getText());
                             break;
                         }
                     }

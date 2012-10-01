@@ -3,6 +3,7 @@ package jp.mayosuke.android.mynews;
 import android.app.ListFragment;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -109,5 +110,27 @@ public class NewsDetailFragment extends ListFragment {
 //        final View view = inflater.inflate(R.layout.activity_main, null);
         view.setBackgroundColor(Color.WHITE);
         return view;
+    }
+
+    private static class Summary {
+        private final String mTitle;
+        private final String mSource;
+        private final long mTime;
+        private final String mSummary;
+        private final Uri mImageUri;
+        private final String mImageSource;
+        private final Uri mOtherSourcesUri;
+        private final String mOtherSoucesLabel;
+
+        private Summary(String title, String source, long time, String summary, Uri imageUri, String imageSource, Uri otherSourcesUri, String otherSourcesLabel) {
+            mTitle = title;
+            mSource = source;
+            mTime = time;
+            mSummary = summary;
+            mImageUri = imageUri;
+            mImageSource = imageSource;
+            mOtherSourcesUri = otherSourcesUri;
+            mOtherSoucesLabel = otherSourcesLabel;
+        }
     }
 }
