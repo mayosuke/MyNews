@@ -29,6 +29,7 @@ import java.util.Map;
 
 public class NewsListFragment extends ListFragment {
     private static final String TAG = NewsListFragment.class.getSimpleName();
+    private static final String ARGS_TITLE = "title";
 
     private final GoogleNews mNews = new GoogleNews();
 
@@ -180,5 +181,22 @@ public class NewsListFragment extends ListFragment {
 //                publishProgress(message);
             }
         }.execute();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        Log.i(TAG, "onSaveInstanceState()");
+        outState.putCharSequence(ARGS_TITLE, getActivity().getActionBar().getTitle());
+    }
+
+    @Override
+    public void onResume()  {
+        Log.i(TAG, "onResume()");
+        super.onResume();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        Log.i(TAG, "onHiddenChanged()");
     }
 }

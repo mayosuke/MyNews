@@ -59,4 +59,9 @@ public class CategoryListFragment extends ListFragment {
         super.onResume();
         getActivity().getActionBar().setTitle(R.string.app_name);
     }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        Log.i(TAG, "onHiddenChanged()");
+    }
 }
