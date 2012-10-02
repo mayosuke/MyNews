@@ -58,10 +58,6 @@ public class CategoryListFragment extends ListFragment {
         Log.i(TAG, "onResume()");
         super.onResume();
         getActivity().getActionBar().setTitle(R.string.app_name);
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        Log.i(TAG, "onHiddenChanged()");
+        Log.i(TAG, "  child view count=" + ((ViewGroup)getActivity().findViewById(android.R.id.content)).getChildCount());
     }
 }

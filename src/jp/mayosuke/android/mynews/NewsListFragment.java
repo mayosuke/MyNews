@@ -193,10 +193,6 @@ public class NewsListFragment extends ListFragment {
     public void onResume()  {
         Log.i(TAG, "onResume()");
         super.onResume();
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        Log.i(TAG, "onHiddenChanged()");
+        Log.i(TAG, "  child view count=" + ((ViewGroup)getActivity().findViewById(android.R.id.content)).getChildCount());
     }
 }
