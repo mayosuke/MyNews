@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -28,7 +27,6 @@ import java.util.Map;
 
 public class NewsListFragment extends ListFragment {
     private static final String TAG = NewsListFragment.class.getSimpleName();
-    private static final String ARGS_TITLE = "title";
 
     private final GoogleNews mNews = new GoogleNews();
 
@@ -48,23 +46,6 @@ public class NewsListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Log.i(TAG, "onListItemClick(position=" + position + ",id=" + id + ")");
-
-//        final NewsDetailFragment newsList;
-//        if (getFragmentManager().findFragmentByTag(Constants.TAG_NEWS_DETAIL) == null) {
-//            Log.i(TAG, "  newsList fragment is already created.");
-//            newsList = new NewsDetailFragment();
-//        } else {
-//            Log.i(TAG, "  newsList fragment is not created.");
-//            newsList = (NewsDetailFragment) getFragmentManager().findFragmentByTag(Constants.TAG_NEWS_DETAIL);
-//        }
-//
-//        final Bundle args = getArguments();
-//        args.putSerializable(Constants.TAG_NEWS_ITEM, (Serializable) mNews.getItems().get(position));
-//
-//        newsList.setArguments(args);
-//        getFragmentManager().beginTransaction().add(android.R.id.content, newsList, Constants.TAG_NEWS_DETAIL).
-//                addToBackStack(Constants.TAG_NEWS_DETAIL).
-//                commit();
 
         final Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
         intent.putExtra(Constants.TAG_NEWS_CATEGORY_ID, getArguments().getInt(Constants.TAG_NEWS_CATEGORY_ID, -1));
@@ -177,17 +158,4 @@ public class NewsListFragment extends ListFragment {
             }
         }.execute();
     }
-
-//    @Override
-//    public void onSaveInstanceState(Bundle outState) {
-//        Log.i(TAG, "onSaveInstanceState()");
-//        outState.putCharSequence(ARGS_TITLE, getActivity().getActionBar().getTitle());
-//    }
-//
-//    @Override
-//    public void onResume()  {
-//        Log.i(TAG, "onResume()");
-//        super.onResume();
-//        Log.i(TAG, "  child view count=" + ((ViewGroup)getActivity().findViewById(android.R.id.content)).getChildCount());
-//    }
 }

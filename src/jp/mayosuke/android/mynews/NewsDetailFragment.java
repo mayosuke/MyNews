@@ -2,12 +2,10 @@ package jp.mayosuke.android.mynews;
 
 import android.app.ListFragment;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -106,16 +104,6 @@ public class NewsDetailFragment extends ListFragment {
         };
         setListAdapter(adapter);
     }
-
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        Log.i(TAG, "onCreateView(savedInstanceState=" + savedInstanceState + ")");
-//        final View view = super.onCreateView(inflater, container, savedInstanceState);
-////        final View view = inflater.inflate(R.layout.news_detail, null);
-////        final View view = inflater.inflate(R.layout.activity_main, null);
-//        view.setBackgroundColor(Color.WHITE);
-//        return view;
-//    }
 
     private static class Summary {
         private final String mTitle;
