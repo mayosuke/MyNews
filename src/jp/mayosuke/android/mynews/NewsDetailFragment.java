@@ -107,15 +107,15 @@ public class NewsDetailFragment extends ListFragment {
         setListAdapter(adapter);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i(TAG, "onCreateView(savedInstanceState=" + savedInstanceState + ")");
-        final View view = super.onCreateView(inflater, container, savedInstanceState);
-//        final View view = inflater.inflate(R.layout.news_detail, null);
-//        final View view = inflater.inflate(R.layout.activity_main, null);
-        view.setBackgroundColor(Color.WHITE);
-        return view;
-    }
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        Log.i(TAG, "onCreateView(savedInstanceState=" + savedInstanceState + ")");
+//        final View view = super.onCreateView(inflater, container, savedInstanceState);
+////        final View view = inflater.inflate(R.layout.news_detail, null);
+////        final View view = inflater.inflate(R.layout.activity_main, null);
+//        view.setBackgroundColor(Color.WHITE);
+//        return view;
+//    }
 
     private static class Summary {
         private final String mTitle;
