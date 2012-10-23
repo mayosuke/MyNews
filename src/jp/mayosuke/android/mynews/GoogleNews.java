@@ -13,6 +13,13 @@ class GoogleNews {
     private static final String TAG_IMAGE = "image";
     private static final String TAG_ITEM = "item";
 
+    // mItemsにputされる値の主要なキー
+    static final String TAG_TITLE = "title";
+    static final String TAG_PUB_DATE = "pubDate";
+    static final String TAG_CATEGORY = "category";
+    static final String TAG_DESCRIPTION = "description";
+    static final String TAG_LINK = "link";
+
     private final Stack<String> mState = new Stack<String>();
     private final Map<String, String> mInfo = new HashMap<String, String>();
     private final Map<String, String> mImageInfo = new HashMap<String, String>();

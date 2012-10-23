@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -150,13 +150,13 @@ public class NewsListFragment extends ListFragment {
             }
             @Override
             protected void onPostExecute(GoogleNews result) {
-//                final ListAdapter adapter = new SimpleAdapter(getActivity(),
-//                        result.getItems(),
-//                        android.R.layout.simple_list_item_2,
-//                        new String[] {"title", "pubDate"},
-//                        new int[] {android.R.id.text1, android.R.id.text2});
-                final ListAdapter adapter = new ArrayAdapter<Map<String, String>>(getActivity(),
-                        android.R.layout.simple_list_item_1, result.getItems());
+                final ListAdapter adapter = new SimpleAdapter(getActivity(),
+                        result.getItems(),
+                        android.R.layout.simple_list_item_2,
+                        new String[] {GoogleNews.TAG_TITLE, GoogleNews.TAG_PUB_DATE},
+                        new int[] {android.R.id.text1, android.R.id.text2});
+//                final ListAdapter adapter = new ArrayAdapter<Map<String, String>>(getActivity(),
+//                        android.R.layout.simple_list_item_1, result.getItems());
                 setListAdapter(adapter);
             }
             private void logBackgroundWork(String message) {
