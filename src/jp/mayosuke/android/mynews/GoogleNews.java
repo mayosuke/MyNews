@@ -60,4 +60,9 @@ class GoogleNews {
             break;
         }
     }
+
+    @Override
+    public String toString() {
+        return "mInfo=" + mInfo.toString() + ",mImageInfo=" + mImageInfo.toString() + ",mItems=" + mItems.toString();
+    }
 }

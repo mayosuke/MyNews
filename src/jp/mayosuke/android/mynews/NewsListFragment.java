@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -46,6 +46,10 @@ public class NewsListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Log.i(TAG, "onListItemClick(position=" + position + ",id=" + id + ")");
+
+//        final Intent intent = new Intent();
+//        intent.setAction(Intent.ACTION_VIEW);
+//        intent.setData(data);
 
         final Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
         intent.putExtra(Constants.TAG_NEWS_CATEGORY_ID, getArguments().getInt(Constants.TAG_NEWS_CATEGORY_ID, -1));
@@ -96,6 +100,7 @@ public class NewsListFragment extends ListFragment {
 //                        }
 //                        Log.i(TAG, line);
 //                    }
+
                     final XmlPullParser parser = Xml.newPullParser();
                     parser.setInput(reader);
                     logBackgroundWork("parsing xml with pull parser...");
@@ -145,11 +150,13 @@ public class NewsListFragment extends ListFragment {
             }
             @Override
             protected void onPostExecute(GoogleNews result) {
-                final ListAdapter adapter = new SimpleAdapter(getActivity(),
-                        result.getItems(),
-                        android.R.layout.simple_list_item_2,
-                        new String[] {"title", "pubDate"},
-                        new int[] {android.R.id.text1, android.R.id.text2});
+//                final ListAdapter adapter = new SimpleAdapter(getActivity(),
+//                        result.getItems(),
+//                        android.R.layout.simple_list_item_2,
+//                        new String[] {"title", "pubDate"},
+//                        new int[] {android.R.id.text1, android.R.id.text2});
+                final ListAdapter adapter = new ArrayAdapter<Map<String, String>>(getActivity(),
+                        android.R.layout.simple_list_item_1, result.getItems());
                 setListAdapter(adapter);
             }
             private void logBackgroundWork(String message) {
