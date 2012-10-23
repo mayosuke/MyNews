@@ -1,5 +1,6 @@
 package jp.mayosuke.android.mynews;
 
+import android.app.DialogFragment;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +8,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -19,7 +23,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -30,6 +33,7 @@ public class NewsListFragment extends ListFragment {
     private static final String TAG = NewsListFragment.class.getSimpleName();
 
     private final GoogleNews mNews = new GoogleNews();
+    private StringBuilder mText;
 
     public NewsListFragment() {}
 
@@ -38,10 +42,27 @@ public class NewsListFragment extends ListFragment {
         Log.i(TAG, "onActivityCreated(savedInstanceState=" + savedInstanceState + ")");
         super.onActivityCreated(savedInstanceState);
 
+        mText = new StringBuilder();
+        this.setHasOptionsMenu(true);
+
         getListView().setFastScrollEnabled(true);
         final Bundle args = getArguments();
         getActivity().getActionBar().setTitle(Constants.CATEGORIES[args.getInt(Constants.TAG_NEWS_CATEGORY_ID)]);
         loadXmlInBackground(args.getInt(Constants.TAG_NEWS_CATEGORY_ID));
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.add("Show XML");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getTitle().equals("Show XML")) {
+            final DialogFragment dialog = newDialogFragment(mText.toString());
+            dialog.show(getFragmentManager(), "Show XML");
+        }
+        return false;
     }
 
     @Override
@@ -143,13 +164,13 @@ public class NewsListFragment extends ListFragment {
                 }
                 return mNews;
             }
-            @Override
-            protected void onProgressUpdate(String... progresses) {
+//            @Override
+//            protected void onProgressUpdate(String... progresses) {
 //                Log.i(TAG, "onProgressUpdate()");
 //                for (String progress : progresses) {
 //                    mText.append(progress + "\n");
 //                }
-            }
+//            }
             @Override
             protected void onPostExecute(GoogleNews result) {
                 final ListAdapter adapter = new SimpleAdapter(getActivity(),
@@ -164,7 +185,18 @@ public class NewsListFragment extends ListFragment {
             private void logBackgroundWork(String message) {
                 Log.i(TAG, message);
 //                publishProgress(message);
+                mText.append(message);
             }
         }.execute();
+    }
+
+    private static DialogFragment newDialogFragment(final String message) {
+        final DialogFragment dialog = new DialogFragment() {
+            
+        };
+        final Bundle args = new Bundle();
+        args.putString("xml", message);
+        dialog.setArguments(args);
+        return dialog;
     }
 }
