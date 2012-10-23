@@ -2,6 +2,7 @@ package jp.mayosuke.android.mynews;
 
 import android.app.ListFragment;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,13 +48,14 @@ public class NewsListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         Log.i(TAG, "onListItemClick(position=" + position + ",id=" + id + ")");
 
-//        final Intent intent = new Intent();
-//        intent.setAction(Intent.ACTION_VIEW);
-//        intent.setData(data);
+        final Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(mNews.getItems().get(position).get(GoogleNews.TAG_LINK)));
 
-        final Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-        intent.putExtra(Constants.TAG_NEWS_CATEGORY_ID, getArguments().getInt(Constants.TAG_NEWS_CATEGORY_ID, -1));
-        intent.putExtra(Constants.TAG_NEWS_ITEM, (Serializable) mNews.getItems().get(position));
+//        final Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+//        intent.putExtra(Constants.TAG_NEWS_CATEGORY_ID, getArguments().getInt(Constants.TAG_NEWS_CATEGORY_ID, -1));
+//        intent.putExtra(Constants.TAG_NEWS_ITEM, (Serializable) mNews.getItems().get(position));
+
         startActivity(intent);
     }
 
