@@ -1,5 +1,7 @@
 package jp.mayosuke.android.mynews;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ListFragment;
 import android.content.Intent;
@@ -126,27 +128,30 @@ public class NewsListFragment extends ListFragment {
 
                     final XmlPullParser parser = Xml.newPullParser();
                     parser.setInput(reader);
-                    logBackgroundWork("parsing xml with pull parser...");
+                    logXmlParsing("parsing xml with pull parser...");
                     for (int eventType = parser.getEventType(); eventType != XmlPullParser.END_DOCUMENT; eventType = parser.next()) {
                         switch (eventType) {
                         case XmlPullParser.START_DOCUMENT:
-                            logBackgroundWork("  xml:start document");
+                            logXmlParsing("xml:start document");
                             break;
                         case XmlPullParser.START_TAG:
-                            logBackgroundWork("  xml:start tag=" + parser.getName());
+//                            logXmlParsing("  xml:start tag=" + parser.getName());
+                            logXmlParsing("<" + parser.getName() + ">");
                             mNews.onXmlEvent(eventType, parser.getName());
                             break;
                         case XmlPullParser.END_TAG:
-                            logBackgroundWork("  xml:end tag=" + parser.getName());
+//                            logXmlParsing("  xml:end tag=" + parser.getName());
+                            logXmlParsing("</" + parser.getName() + ">\n");
                             mNews.onXmlEvent(eventType, parser.getName());
                             break;
                         case XmlPullParser.TEXT:
-                            logBackgroundWork("  xml:text=" + parser.getText());
+//                            logXmlParsing("  xml:text=" + parser.getText());
+                            logXmlParsing(parser.getText());
                             mNews.onXmlEvent(eventType, parser.getText());
                             break;
                         }
                     }
-                    logBackgroundWork("  xml:end document");
+                    logXmlParsing("  xml:end document");
 
                     reader.close();
                     connection.disconnect();
@@ -185,18 +190,30 @@ public class NewsListFragment extends ListFragment {
             private void logBackgroundWork(String message) {
                 Log.i(TAG, message);
 //                publishProgress(message);
+//                mText.append(message);
+            }
+            private void logXmlParsing(String message) {
+                Log.i(TAG, message);
+//                publishProgress(message);
                 mText.append(message);
             }
         }.execute();
     }
 
     private static DialogFragment newDialogFragment(final String message) {
-        final DialogFragment dialog = new DialogFragment() {
-            
+        final DialogFragment fragment = new DialogFragment() {
+            @Override
+            public Dialog onCreateDialog(Bundle savedInstanceState) {
+                final String[] items = {message};
+                final AlertDialog dialog = new AlertDialog.Builder(getActivity()).
+                        setMessage(message).
+                        create();
+                return dialog;
+            }
         };
         final Bundle args = new Bundle();
         args.putString("xml", message);
-        dialog.setArguments(args);
-        return dialog;
+        fragment.setArguments(args);
+        return fragment;
     }
 }
