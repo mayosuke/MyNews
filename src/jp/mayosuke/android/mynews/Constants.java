@@ -46,6 +46,11 @@ final class Constants {
     static final String TAG_NEWS_CATEGORY_ID = "newsCategoryId";
     static final String TAG_NEWS_DETAIL = "newsDetail";
     static final String TAG_NEWS_ITEM = "newsItem";
+    static final String TAG_NEWS_KEYWORD = "newsKeyword";
 
     private Constants() {}
+
+    static Uri parseQueryString(final String query) {
+        return Uri.parse("http://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=" + Uri.encode(query));
+    }
 }

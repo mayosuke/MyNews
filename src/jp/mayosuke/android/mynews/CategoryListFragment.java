@@ -17,9 +17,20 @@ public class CategoryListFragment extends ListFragment {
     private static final String TAG = CategoryListFragment.class.getSimpleName();
 
     private final OnQueryTextListener mQueryTextListener = new OnQueryTextListener() {
+        // onQueryTextSubmit()が二回連続で呼ばれるため、二回目に呼ばれた時にstartActivity()を行わないためのフラグ。
+        private boolean mIsQueryOngoing = false;
         @Override
         public boolean onQueryTextSubmit(String query) {
             Log.i(TAG, "onQueryTextSubmit():query=" + query);
+            if (mIsQueryOngoing) {
+                mIsQueryOngoing = false;
+                return true;
+            }
+            mIsQueryOngoing = true;
+            final Intent intent = new Intent(getActivity(), NewsListActivity.class);
+            intent.putExtra(Constants.TAG_NEWS_CATEGORY_ID, -1);
+            intent.putExtra(Constants.TAG_NEWS_KEYWORD, query);
+            startActivity(intent);
             return true;
         }
 
