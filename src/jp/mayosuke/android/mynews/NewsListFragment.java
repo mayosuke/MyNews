@@ -45,7 +45,7 @@ public class NewsListFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
 
         mText = new StringBuilder();
-        this.setHasOptionsMenu(true);
+        setHasOptionsMenu(true);
 
         getListView().setFastScrollEnabled(true);
         final Bundle args = getArguments();
