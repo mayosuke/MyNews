@@ -72,6 +72,7 @@ public class CategoryListFragment extends ListFragment {
         @Override
         public void onDestroyActionMode(ActionMode mode) {
             Log.i(TAG, "onDestroyActionMode()");
+            getListView().clearChoices();
             getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
         }
     };
