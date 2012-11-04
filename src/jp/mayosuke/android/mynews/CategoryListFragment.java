@@ -4,8 +4,11 @@ import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ActionMode;
+import android.view.ActionMode.Callback;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
@@ -44,6 +47,33 @@ public class CategoryListFragment extends ListFragment {
         }
     };
 
+    private final Callback mActionModeCallback = new Callback() {
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            Log.i(TAG, "onCreateActionMode()");
+            getActivity().getMenuInflater().inflate(R.menu.category_list_edit, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            Log.i(TAG, "onPrepareActionMode()");
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            Log.i(TAG, "onActionItemClicked()");
+            return false;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            Log.i(TAG, "onDestroyActionMode()");
+        }
+    };
+
     private ArrayAdapter<String> mAdapter;
 
     public CategoryListFragment() {}
@@ -65,6 +95,17 @@ public class CategoryListFragment extends ListFragment {
         inflater.inflate(R.menu.category_list, menu);
         final SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setOnQueryTextListener(mQueryTextListener);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.action_edit:
+            getActivity().startActionMode(mActionModeCallback);
+            return true;
+        default:
+            return false;
+        }
     }
 
     @Override
