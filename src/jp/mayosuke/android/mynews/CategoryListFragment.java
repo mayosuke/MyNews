@@ -55,7 +55,8 @@ public class CategoryListFragment extends ListFragment {
 
         setHasOptionsMenu(true);
 
-        mAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Constants.CATEGORIES);
+        mAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1);
+        mAdapter.addAll(Constants.CATEGORIES);
         setListAdapter(mAdapter);
     }
 
