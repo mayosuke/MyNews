@@ -31,6 +31,9 @@ public class CategoryListFragment extends ListFragment {
             intent.putExtra(Constants.TAG_NEWS_CATEGORY_ID, -1);
             intent.putExtra(Constants.TAG_NEWS_KEYWORD, query);
             startActivity(intent);
+
+            mAdapter.add(query);
+
             return true;
         }
 
@@ -41,6 +44,8 @@ public class CategoryListFragment extends ListFragment {
         }
     };
 
+    private ArrayAdapter<String> mAdapter;
+
     public CategoryListFragment() {}
 
     @Override
@@ -50,8 +55,8 @@ public class CategoryListFragment extends ListFragment {
 
         setHasOptionsMenu(true);
 
-        final ListAdapter adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Constants.CATEGORIES);
-        setListAdapter(adapter);
+        mAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Constants.CATEGORIES);
+        setListAdapter(mAdapter);
     }
 
     @Override
