@@ -52,7 +52,8 @@ public class CategoryListFragment extends ListFragment {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
             Log.i(TAG, "onCreateActionMode()");
-            getActivity().getMenuInflater().inflate(R.menu.category_list_edit, menu);
+            mode.getMenuInflater().inflate(R.menu.category_list_edit, menu);
+            getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             return true;
         }
 
@@ -71,6 +72,7 @@ public class CategoryListFragment extends ListFragment {
         @Override
         public void onDestroyActionMode(ActionMode mode) {
             Log.i(TAG, "onDestroyActionMode()");
+            getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
         }
     };
 
@@ -111,6 +113,10 @@ public class CategoryListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Log.i(TAG, "onListItemClick(position=" + position + ",id=" + id + ")");
+
+        if (getListView().getChoiceMode() != ListView.CHOICE_MODE_NONE) {
+            return;
+        }
 
         final Intent intent = new Intent(getActivity(), NewsListActivity.class);
         intent.putExtra(Constants.TAG_NEWS_CATEGORY_ID, position);
