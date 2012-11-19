@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-class GoogleNews {
+public final class GoogleNews {
+    public static final String AUTHORITY = "jp.mayosuke.provider.GoogleNews";
+
     private static final String TAG_CHANNEL = "channel";
     private static final String TAG_IMAGE = "image";
     private static final String TAG_ITEM = "item";
